@@ -17,17 +17,42 @@ export class FlashcardsComponent implements OnInit {
   cardStates = signal<FlashcardState[]>([]);
   loading = signal(false);
   error = signal<string | null>(null);
+  selectedList = signal<string | null>(null);
+
+  /**
+   * Ids já exibidos no ciclo atual, por escopo (chave da lista, ou '__ALL__' para "Todos").
+   * Garante que um verbo não repita dentro do escopo até todos já terem sido mostrados.
+   */
+  private shownVerbIdsByScope = new Map<string, Set<string>>();
 
   ngOnInit(): void {
     this.startNewRound();
+  }
+
+  selectList(list: string | null): void {
+    if (this.selectedList() !== list) {
+      this.selectedList.set(list);
+      this.startNewRound();
+    }
+  }
+
+  private scopeKey(): string {
+    return this.selectedList() ?? '__ALL__';
   }
 
   startNewRound(): void {
     this.loading.set(true);
     this.error.set(null);
 
-    this.verbService.getRandomVerbs(3).subscribe({
-      next: (verbs: Verb[]) => {
+    const scopeKey = this.scopeKey();
+    const excludeIds = Array.from(this.shownVerbIdsByScope.get(scopeKey) ?? []);
+
+    this.verbService.getRandomVerbs(3, this.selectedList(), excludeIds).subscribe({
+      next: ({ verbs, cycleReset }: { verbs: Verb[]; cycleReset: boolean }) => {
+        const shownIds = cycleReset ? new Set<string>() : new Set(this.shownVerbIdsByScope.get(scopeKey) ?? []);
+        verbs.forEach((verb) => shownIds.add(verb.id));
+        this.shownVerbIdsByScope.set(scopeKey, shownIds);
+
         this.cardStates.set(
           verbs.map((verb) => ({
             verb,

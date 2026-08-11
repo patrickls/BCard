@@ -4,6 +4,7 @@ export interface Verb {
   infinitive: string;
   pastSimple: string;
   pastParticiple: string;
+  list?: string;
   createdAt?: string;
   updatedAt?: string;
 }

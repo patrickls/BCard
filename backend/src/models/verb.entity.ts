@@ -17,6 +17,9 @@ export class VerbEntity {
   @Column({ name: "past_participle", type: "varchar", length: 255 })
   pastParticiple!: string;
 
+  @Column({ type: "varchar", length: 50 })
+  list!: string;
+
   @CreateDateColumn({ name: "created_at" })
   createdAt!: Date;
 

@@ -7,9 +7,14 @@ export class VerbController {
   getRandom = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const count = req.query.count ? parseInt(req.query.count as string, 10) : 3;
-      const limit = isNaN(count) || count < 1 ? 3 : Math.min(count, 30);
-      const verbs = await this.service.getRandomVerbs(limit);
-      res.json({ data: verbs, error: null });
+      const limit = isNaN(count) || count < 1 ? 3 : Math.min(count, 94);
+      const list = req.query.list ? (req.query.list as string) : undefined;
+      const excludeIds = req.query.excludeIds
+        ? (req.query.excludeIds as string).split(",").map((id) => id.trim()).filter(Boolean)
+        : [];
+
+      const { verbs, cycleReset } = await this.service.getRandomVerbs(limit, list, excludeIds);
+      res.json({ data: verbs, error: null, cycleReset });
     } catch (err) {
       next(err);
     }

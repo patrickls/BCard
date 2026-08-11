@@ -1,5 +1,5 @@
 
-**Status:** Rascunho | **Owner:** [A DEFINIR] | **Versão:** 0.1
+**Status:** Rascunho | **Owner:** [A DEFINIR] | **Versão:** 0.2
 
 ---
 
@@ -30,6 +30,11 @@ Estudantes de inglês frequentemente relatam dificuldade em fixar verbos irregul
 ### O que fazemos
 
 - Painel com 3 cards por rodada, sorteados de um banco fixo de verbos irregulares.
+- Seletor de escopo com três botões: **Lista 1**, **Lista 2** e **Todos**.
+  - Com **Lista 1** ou **Lista 2** selecionada, o sorteio considera exclusivamente os verbos daquela lista.
+  - Com **Todos** selecionado (estado padrão ao carregar o painel), o sorteio considera qualquer verbo da base, sem restrição de lista.
+  - Trocar de escopo inicia uma nova rodada imediatamente com verbos do escopo recém-selecionado.
+  - **Regra de não repetição:** dentro de um mesmo escopo (Lista 1, Lista 2 ou Todos), um verbo já exibido não deve ser sorteado novamente até que todos os demais verbos daquele escopo já tenham sido exibidos pelo menos uma vez. Esgotado o escopo, o ciclo de sorteio reinicia (todos os verbos voltam a ficar elegíveis). Trocar de escopo não reaproveita o histórico de "já exibidos" de outro escopo.
 - Cada card mostra o verbo em português na frente.
 - Ao lado do card, 3 campos: tradução (infinitivo em inglês), passado (simple past), particípio passado (past participle).
 - Ao clicar/tocar no card (ou Enter/Espaço), ele vira e revela o gabarito.
@@ -65,10 +70,14 @@ Estudantes de inglês frequentemente relatam dificuldade em fixar verbos irregul
 |RF08|Como estudante, quero navegar e responder pelo teclado (Tab, Enter/Espaço para virar o card), para usar o painel sem depender do mouse.|SHOULD|
 |RF09|Como professor, quero cadastrar meus próprios verbos no banco, para adaptar o conteúdo à turma.|COULD (v2)|
 |RF10|Como estudante, quero ver meu histórico de acertos entre sessões, para acompanhar minha evolução.|COULD (v2)|
+|RF11|Como estudante, quero escolher entre Lista 1, Lista 2 ou Todos, para focar meu estudo em um subconjunto específico de verbos ou praticar a base inteira.|MUST|
+|RF12|Como estudante, quero que o sorteio não repita um verbo do escopo atual até que eu já tenha visto todos os outros verbos daquele escopo, para garantir cobertura completa da lista antes de qualquer repetição.|MUST|
 
-**Fluxo principal:** Acessa o painel → 3 cards são sorteados → preenche os 3 campos de cada card → clica no card → vê certo/errado → repete para os outros 2 cards → clica em "Nova rodada" → recomeça.
+**Fluxo principal:** Acessa o painel (escopo padrão "Todos") → 3 cards são sorteados → preenche os 3 campos de cada card → clica no card → vê certo/errado → repete para os outros 2 cards → clica em "Nova rodada" → recomeça.
 
-**Fluxo alternativo:** Estudante vira o card sem preencher nada → todos os campos aparecem como errados (em branco não conta como acerto) → estudante toca de novo para reabrir e preencher.
+**Fluxo alternativo (troca de lista):** Estudante clica em "Lista 1" ou "Lista 2" → escopo de sorteio muda para a lista escolhida → uma nova rodada é sorteada imediatamente apenas com verbos daquela lista → o controle de "já exibidos" passa a rastrear esse escopo separadamente.
+
+**Fluxo alternativo (card em branco):** Estudante vira o card sem preencher nada → todos os campos aparecem como errados (em branco não conta como acerto) → estudante toca de novo para reabrir e preencher.
 
 ## 6. Edge Cases e Requisitos Não-Funcionais
 
@@ -80,6 +89,9 @@ Estudantes de inglês frequentemente relatam dificuldade em fixar verbos irregul
 - Verbo com duas formas possíveis no português ("ser / estar") → já tratado no banco atual como um único card; [A DEFINIR] se isso deve virar dois cards separados no futuro.
 - Sorteio não deve repetir o mesmo verbo duas vezes na mesma rodada (já garantido pela lógica de seleção sem reposição).
 - Usuário clica em "Nova rodada" no meio de uma rodada não finalizada → perde as respostas em andamento sem confirmação. [A DEFINIR] se deve haver um aviso de confirmação.
+- Escopo selecionado (Lista 1, Lista 2 ou Todos) tem menos verbos "ainda não exibidos" do que o tamanho da rodada (3) → completar a rodada com os verbos restantes do ciclo atual e, ao esgotá-lo, reiniciar o ciclo (todos elegíveis novamente) para preencher as vagas remanescentes, sem repetir um verbo dentro da mesma rodada.
+- Usuário troca de escopo (ex.: Lista 1 → Todos → Lista 1) → o controle de "já exibidos" de cada escopo é independente; voltar a um escopo usado anteriormente retoma (ou reinicia, se já havia esgotado) o ciclo daquele escopo especificamente, sem herdar o progresso de outro escopo.
+- Escopo Lista 1/Lista 2 tem 0 verbos cadastrados (base vazia ou mal configurada) → [A DEFINIR] comportamento (exibir erro amigável em vez de tela vazia/quebrada).
 
 **Requisitos não-funcionais:**
 
@@ -98,6 +110,10 @@ Estudantes de inglês frequentemente relatam dificuldade em fixar verbos irregul
 - DADO qualquer estado do painel, QUANDO o estudante clica em "Nova rodada", ENTÃO 3 novos verbos são sorteados, todos os cards voltam à frente, e todos os campos são limpos.
 - DADO que 1, 2 ou 3 cards já foram virados, QUANDO o estudante observa o placar, ENTÃO o placar exibe corretamente "X/9" somando apenas os campos dos cards já conferidos.
 - DADO acesso via teclado, QUANDO o estudante navega com Tab até um card e pressiona Enter ou Espaço, ENTÃO o card vira exatamente como no clique do mouse.
+- DADO o painel carregado, QUANDO o estudante clica em "Lista 1" (ou "Lista 2"), ENTÃO a rodada sorteada contém apenas verbos pertencentes àquela lista, e o botão correspondente fica marcado como ativo.
+- DADO o painel carregado, QUANDO o estudante clica em "Todos", ENTÃO a rodada sorteada pode conter verbos de qualquer lista da base.
+- DADO um escopo selecionado (Lista 1, Lista 2 ou Todos) com N verbos elegíveis, QUANDO o estudante sorteia rodadas sucessivas dentro desse escopo, ENTÃO nenhum verbo se repete até que os N verbos do escopo já tenham sido exibidos pelo menos uma vez.
+- DADO que todos os verbos de um escopo já foram exibidos ao menos uma vez, QUANDO uma nova rodada é sorteada, ENTÃO o ciclo reinicia e todos os verbos daquele escopo voltam a ser elegíveis para sorteio.
 
 ## 8. Métricas de Sucesso
 

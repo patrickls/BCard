@@ -10,6 +10,40 @@
       <span class="module-pill">Verbos Irregulares</span>
     </div>
 
+    <!-- SELETOR DE LISTAS DE VERBOS -->
+    <div class="list-selector-bar" role="group" aria-label="Seleção de lista de verbos">
+      <span class="selector-label">Selecionar lista:</span>
+      <div class="selector-pills">
+        <button
+          type="button"
+          class="pill-btn"
+          [class.active]="selectedList() === 'Lista 1'"
+          [attr.aria-pressed]="selectedList() === 'Lista 1'"
+          (click)="selectList('Lista 1')"
+        >
+          Lista 1
+        </button>
+        <button
+          type="button"
+          class="pill-btn"
+          [class.active]="selectedList() === 'Lista 2'"
+          [attr.aria-pressed]="selectedList() === 'Lista 2'"
+          (click)="selectList('Lista 2')"
+        >
+          Lista 2
+        </button>
+        <button
+          type="button"
+          class="pill-btn"
+          [class.active]="selectedList() === null"
+          [attr.aria-pressed]="selectedList() === null"
+          (click)="selectList(null)"
+        >
+          Todos
+        </button>
+      </div>
+    </div>
+
     <!-- HERO DO MÓDULO & PLACAR -->
     <div class="header-main">
       <div class="header-title-container">
