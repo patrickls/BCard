@@ -2,6 +2,10 @@
 
 > Contexto operacional do projeto para o Claude Code. Este arquivo é o contrato de trabalho entre o time e a IA: define stack, arquitetura e convenções. Tudo que não estiver aqui, a IA deve perguntar antes de assumir.
 
+## 0. Diretriz de Pesquisa
+
+- Sempre que precisar pesquisar algo no projeto (código, arquitetura, relação entre arquivos), olhe para o **graphify** antes de outras formas de busca.
+
 ## 1. Visão Geral
 
 - **Tipo de projeto:** POC — escopo pequeno/simples, sem necessidade de escala.
@@ -109,7 +113,7 @@ Monorepo único: `backend/` e `frontend/` como pastas irmãs neste repositório.
 
 - **Autenticação:** Supabase Auth (login, refresh token e recuperação de senha ficam a cargo do Supabase — não reimplementar).
 - **Frontend:** Angular usa `@supabase/supabase-js` **somente** para o fluxo de login/sessão. Todo o resto (CRUD de negócio) chama a API do Express normalmente, nunca o Supabase direto.
-- **Backend:** middleware de auth no Express valida o JWT emitido pelo Supabase (via `SUPABASE_JWT_SECRET` ou verificação com a chave pública do projeto). A partir daí, segue o fluxo MCS normal — a autorização (o que o usuário pode fazer) é regra de negócio e vive no Service, não no Supabase.
+- **Backend:** middleware de auth no Express valida o JWT emitido pelo Supabase via JWKS (`jwks-rsa`, chave pública buscada em `${SUPABASE_URL}/auth/v1/.well-known/jwks.json`, algoritmo ES256) — este projeto usa o sistema novo de signing keys assimétricas do Supabase, não o `SUPABASE_JWT_SECRET` (HS256) legado. A partir daí, segue o fluxo MCS normal — a autorização (o que o usuário pode fazer) é regra de negócio e vive no Service, não no Supabase.
 - Guard equivalente no Angular (`AuthGuard` + `HttpInterceptor` para anexar o token nas chamadas ao backend Express).
 
 ## 9. Testes
@@ -138,7 +142,6 @@ NODE_ENV=
 SUPABASE_URL=
 SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
-SUPABASE_JWT_SECRET=
 ```
 
 - `SUPABASE_SERVICE_ROLE_KEY` é usada pelo backend (ignora RLS — aceitável aqui porque autorização já é feita no Service, ver seção 7). **Nunca** expor essa chave no frontend.
@@ -163,3 +166,6 @@ SUPABASE_JWT_SECRET=
 ## 14. Histórico — o que já foi tentado e deu errado
 
 (a preencher conforme o projeto avança — este é o campo mais valioso do arquivo: toda vez que um output sair ruim, a causa raiz vira uma linha aqui.)
+
+- **2026-08-11 — JWT do Supabase não usa `SUPABASE_JWT_SECRET`:** o projeto Supabase (`lsyyjvqbdgucblsiyzer`) já nasceu no sistema novo de API keys (`sb_publishable_...` / `sb_secret_...`) e de signing keys assimétricas (ES256). Não existe um "JWT Secret" HS256 tradicional pra copiar em Settings → API → JWT Settings — só o Key ID (formato UUID) das signing keys. A validação do JWT no backend usa JWKS (`jwks-rsa`, endpoint `${SUPABASE_URL}/auth/v1/.well-known/jwks.json`) — ver seção 8. Se um projeto Supabase mais antigo (chaves legacy `anon`/`service_role`) for usado no futuro, essa lógica pode precisar voltar a um secret estático.
+- **2026-08-11 — Pooler do Supabase não aparecia em Settings → Database:** nesse projeto a connection string do pooler só apareceu depois de acessar diretamente `/settings/database` e trocar o seletor de modo (Direct/Transaction/Session). Por padrão a tela mostrava só a conexão direta. A porta **6543** é a transaction pooler (usada em `DATABASE_URL`); porta **5432** no mesmo host `aws-0-<região>.pooler.supabase.com` é a session pooler — mesmo host, porta diferente.
