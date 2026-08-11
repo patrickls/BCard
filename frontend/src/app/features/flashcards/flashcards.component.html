@@ -21,17 +21,17 @@
 
       <!-- PAINEL DE PLACAR & AÇÃO -->
       <div class="action-bar">
-        <div class="score-badge" [attr.aria-label]="'Placar atual ' + roundScore + ' de 9 acertos'">
+        <div class="score-badge" [attr.aria-label]="'Placar atual ' + roundScore() + ' de 9 acertos'">
           <span class="score-label">Placar da rodada</span>
-          <span class="score-value">{{ roundScore }} <small>/ 9</small></span>
-          <span class="score-detail">({{ flippedCardsCount }}/3 cards virados)</span>
+          <span class="score-value">{{ roundScore() }} <small>/ 9</small></span>
+          <span class="score-detail">({{ flippedCardsCount() }}/3 cards virados)</span>
         </div>
 
         <button
           type="button"
           class="btn-new-round"
           (click)="startNewRound()"
-          [disabled]="loading"
+          [disabled]="loading()"
           aria-label="Sortear nova rodada com outros 3 verbos"
         >
           <span class="btn-icon">🔄</span>
@@ -42,21 +42,21 @@
   </header>
 
   <!-- ESTADO DE CARREGAMENTO -->
-  <div class="loading-container" *ngIf="loading">
+  <div class="loading-container" *ngIf="loading()">
     <div class="spinner"></div>
     <p>Sorteando novos verbos...</p>
   </div>
 
   <!-- ESTADO DE ERRO -->
-  <div class="error-banner" *ngIf="error && !loading">
-    <p>⚠️ {{ error }}</p>
+  <div class="error-banner" *ngIf="error() && !loading()">
+    <p>⚠️ {{ error() }}</p>
     <button type="button" class="btn-retry" (click)="startNewRound()">Tentar Novamente</button>
   </div>
 
   <!-- GRID DE FLASHCARDS (POST-ITS) -->
-  <main class="cards-grid" *ngIf="!loading && !error">
+  <main class="cards-grid" *ngIf="!loading() && !error()">
     <app-flashcard-item
-      *ngFor="let card of cardStates; let i = index; trackBy: trackByCard"
+      *ngFor="let card of cardStates(); let i = index; trackBy: trackByCard"
       [state]="card"
       [index]="i"
       (stateChange)="onStateChange(i, $event)"
