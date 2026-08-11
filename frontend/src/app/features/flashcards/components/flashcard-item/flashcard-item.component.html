@@ -1,0 +1,143 @@
+<div
+  class="postit-card-container"
+  [ngClass]="[colorClass, state.isFlipped ? 'flipped' : '']"
+  tabindex="0"
+  role="button"
+  [attr.aria-expanded]="state.isFlipped"
+  [attr.aria-label]="'Card do verbo ' + state.verb.portuguese + (state.isFlipped ? ' (virado)' : ' (frente)')"
+  (click)="toggleFlip($event)"
+  (keydown)="onKeydown($event)"
+>
+  <div class="postit-card-inner">
+    <!-- FRENTE DO POST-IT -->
+    <div class="postit-face postit-card-front">
+      <div class="tape-decor" aria-hidden="true"></div>
+      
+      <header class="card-header">
+        <span class="card-number">#{{ index + 1 }}</span>
+        <h3 class="verb-title">{{ state.verb.portuguese }}</h3>
+      </header>
+
+      <form class="card-form" (submit)="$event.preventDefault()">
+        <div class="field-group">
+          <label [for]="'trans-' + index">Tradução (Infinitivo)</label>
+          <input
+            [id]="'trans-' + index"
+            type="text"
+            placeholder="ex: go"
+            [(ngModel)]="state.answers.translation"
+            [name]="'trans-' + index"
+            (ngModelChange)="onInputChange()"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+
+        <div class="field-group">
+          <label [for]="'past-' + index">Passado (Simple Past)</label>
+          <input
+            [id]="'past-' + index"
+            type="text"
+            placeholder="ex: went"
+            [(ngModel)]="state.answers.pastSimple"
+            [name]="'past-' + index"
+            (ngModelChange)="onInputChange()"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+
+        <div class="field-group">
+          <label [for]="'part-' + index">Particípio Passado</label>
+          <input
+            [id]="'part-' + index"
+            type="text"
+            placeholder="ex: gone"
+            [(ngModel)]="state.answers.pastParticiple"
+            [name]="'part-' + index"
+            (ngModelChange)="onInputChange()"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+      </form>
+
+      <footer class="card-footer">
+        <span class="flip-hint">💡 Clica ou tecla Enter/Espaço para conferir</span>
+      </footer>
+    </div>
+
+    <!-- VERSO DO POST-IT (GABARITO) -->
+    <div class="postit-face postit-card-back">
+      <div class="tape-decor" aria-hidden="true"></div>
+
+      <header class="card-header">
+        <span class="gabarito-badge">Gabarito</span>
+        <h3 class="verb-title">{{ state.verb.portuguese }}</h3>
+      </header>
+
+      <div class="results-list" *ngIf="state.result">
+        <!-- TRADUÇÃO -->
+        <div
+          class="result-row"
+          [ngClass]="state.result.translationCorrect ? 'correct' : 'incorrect'"
+        >
+          <div class="result-label-group">
+            <span class="field-name">Tradução:</span>
+            <span class="expected-answer">{{ state.verb.infinitive }}</span>
+          </div>
+          <div class="result-status">
+            <span class="user-given" *ngIf="state.answers.translation">
+              ("{{ state.answers.translation }}")
+            </span>
+            <span class="status-badge">
+              {{ state.result.translationCorrect ? '✓' : '✗' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- PASSADO SIMPLES -->
+        <div
+          class="result-row"
+          [ngClass]="state.result.pastSimpleCorrect ? 'correct' : 'incorrect'"
+        >
+          <div class="result-label-group">
+            <span class="field-name">Passado:</span>
+            <span class="expected-answer">{{ state.verb.pastSimple }}</span>
+          </div>
+          <div class="result-status">
+            <span class="user-given" *ngIf="state.answers.pastSimple">
+              ("{{ state.answers.pastSimple }}")
+            </span>
+            <span class="status-badge">
+              {{ state.result.pastSimpleCorrect ? '✓' : '✗' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- PARTICÍPIO PASSADO -->
+        <div
+          class="result-row"
+          [ngClass]="state.result.pastParticipleCorrect ? 'correct' : 'incorrect'"
+        >
+          <div class="result-label-group">
+            <span class="field-name">Particípio:</span>
+            <span class="expected-answer">{{ state.verb.pastParticiple }}</span>
+          </div>
+          <div class="result-status">
+            <span class="user-given" *ngIf="state.answers.pastParticiple">
+              ("{{ state.answers.pastParticiple }}")
+            </span>
+            <span class="status-badge">
+              {{ state.result.pastParticipleCorrect ? '✓' : '✗' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="card-footer">
+        <span class="flip-hint">🔄 Clique novamente para re-editar</span>
+      </footer>
+    </div>
+  </div>
+</div>

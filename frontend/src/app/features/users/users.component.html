@@ -1,0 +1,11 @@
+<h1>Usuários</h1>
+
+@if (loading()) {
+  <p>Carregando...</p>
+} @else {
+  <ul>
+    @for (user of users(); track user.id) {
+      <li>{{ user.name }} — {{ user.email }}</li>
+    }
+  </ul>
+}
