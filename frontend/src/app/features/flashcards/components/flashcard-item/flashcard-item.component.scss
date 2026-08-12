@@ -274,6 +274,41 @@
   }
 }
 
+/* Responsividade Mobile (< 480px) */
+@media (max-width: 480px) {
+  .postit-card-container,
+  .postit-card-inner {
+    min-height: 340px;
+  }
+
+  .postit-face {
+    padding: 1.1rem;
+  }
+
+  .card-header .verb-title {
+    font-size: 1.2rem;
+  }
+
+  .card-form {
+    gap: 0.65rem;
+
+    .field-group input {
+      padding: 0.5rem 0.65rem;
+      font-size: 1rem; /* evita zoom automático em iOS */
+    }
+  }
+
+  .results-list .result-row {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+
+    .result-status {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
+
 /* Suporte a preferência de movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
   .postit-card-inner {
