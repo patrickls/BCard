@@ -1,0 +1,252 @@
+{
+  "backend/package.json": {
+    "mtime": 1786445666.1772487,
+    "ast_hash": "2072c563961248d62fde8ae614dc5f3d",
+    "semantic_hash": "2072c563961248d62fde8ae614dc5f3d"
+  },
+  "backend/src/app.ts": {
+    "mtime": 1786445767.1992965,
+    "ast_hash": "6aa81506a282e767a6af09b325cfd1c7",
+    "semantic_hash": "6aa81506a282e767a6af09b325cfd1c7"
+  },
+  "backend/src/config/database.ts": {
+    "mtime": 1786445697.4281087,
+    "ast_hash": "cce1857db1d6b5b19d6658818ef8a197",
+    "semantic_hash": "cce1857db1d6b5b19d6658818ef8a197"
+  },
+  "backend/src/controllers/user.controller.ts": {
+    "mtime": 1786445745.402715,
+    "ast_hash": "15e1b20676711b3f34cb2e7750fd1786",
+    "semantic_hash": "15e1b20676711b3f34cb2e7750fd1786"
+  },
+  "backend/src/controllers/verb.controller.ts": {
+    "mtime": 1786448476.0439267,
+    "ast_hash": "eada9e7904686e59d88bdd7f391dda4e",
+    "semantic_hash": "eada9e7904686e59d88bdd7f391dda4e"
+  },
+  "backend/src/middlewares/auth.middleware.ts": {
+    "mtime": 1786445721.740558,
+    "ast_hash": "0511c5c6680f126eb6f3d8081ce52b1f",
+    "semantic_hash": "0511c5c6680f126eb6f3d8081ce52b1f"
+  },
+  "backend/src/middlewares/error-handler.middleware.ts": {
+    "mtime": 1786445713.6547594,
+    "ast_hash": "665536fdb4aca3a0db2ac8a7c6eed38a",
+    "semantic_hash": "665536fdb4aca3a0db2ac8a7c6eed38a"
+  },
+  "backend/src/migrations/1723380000000-CreateVerbsTable.ts": {
+    "mtime": 1786448461.8334162,
+    "ast_hash": "077e3afec9d8cedd1854be1db37c8835",
+    "semantic_hash": "077e3afec9d8cedd1854be1db37c8835"
+  },
+  "backend/src/models/user.entity.ts": {
+    "mtime": 1786445729.1240487,
+    "ast_hash": "7f017cb1460cf320049e5ebd9cd150b0",
+    "semantic_hash": "7f017cb1460cf320049e5ebd9cd150b0"
+  },
+  "backend/src/models/verb.entity.ts": {
+    "mtime": 1786448455.709594,
+    "ast_hash": "4ea711698bba01dbb1d0c7ba89d20825",
+    "semantic_hash": "4ea711698bba01dbb1d0c7ba89d20825"
+  },
+  "backend/src/routes/index.ts": {
+    "mtime": 1786448485.7433965,
+    "ast_hash": "f4e7d0a93f34760c8153a5d82db4a565",
+    "semantic_hash": "f4e7d0a93f34760c8153a5d82db4a565"
+  },
+  "backend/src/routes/user.routes.ts": {
+    "mtime": 1786445752.3321311,
+    "ast_hash": "e4f6499fd6d4ad7cc33a7438b4bd9804",
+    "semantic_hash": "e4f6499fd6d4ad7cc33a7438b4bd9804"
+  },
+  "backend/src/routes/verb.routes.ts": {
+    "mtime": 1786448479.9475455,
+    "ast_hash": "b227615fb1ca387da39e51c1a5c9fc86",
+    "semantic_hash": "b227615fb1ca387da39e51c1a5c9fc86"
+  },
+  "backend/src/server.ts": {
+    "mtime": 1786445774.0386162,
+    "ast_hash": "83735c344ea5a206588fcf740cd70ee9",
+    "semantic_hash": "83735c344ea5a206588fcf740cd70ee9"
+  },
+  "backend/src/services/user.service.ts": {
+    "mtime": 1786445737.1484902,
+    "ast_hash": "9c1118b1cecd089ed14e2cad5f8c3008",
+    "semantic_hash": "9c1118b1cecd089ed14e2cad5f8c3008"
+  },
+  "backend/src/services/verb.service.ts": {
+    "mtime": 1786448469.9611142,
+    "ast_hash": "f0b37ea6b6b47194176d7c61b3985100",
+    "semantic_hash": "f0b37ea6b6b47194176d7c61b3985100"
+  },
+  "backend/tsconfig.json": {
+    "mtime": 1786445674.7347925,
+    "ast_hash": "df4c212f2f691e6a9bc5ef6638366e1c",
+    "semantic_hash": "df4c212f2f691e6a9bc5ef6638366e1c"
+  },
+  "frontend/.vscode/extensions.json": {
+    "mtime": 1786445864.5056014,
+    "ast_hash": "66fd9e60d4633b6099fe02e06a7075ea",
+    "semantic_hash": "66fd9e60d4633b6099fe02e06a7075ea"
+  },
+  "frontend/.vscode/launch.json": {
+    "mtime": 1786445864.5070636,
+    "ast_hash": "430386a2f03e9d559664c196344c121b",
+    "semantic_hash": "430386a2f03e9d559664c196344c121b"
+  },
+  "frontend/.vscode/tasks.json": {
+    "mtime": 1786445864.5070636,
+    "ast_hash": "cb7ed9a56930402d9059ea5a9773d60e",
+    "semantic_hash": "cb7ed9a56930402d9059ea5a9773d60e"
+  },
+  "frontend/angular.json": {
+    "mtime": 1786448592.460231,
+    "ast_hash": "5dfb8b66020252e0c2213e8e6a4184e8",
+    "semantic_hash": "5dfb8b66020252e0c2213e8e6a4184e8"
+  },
+  "frontend/package.json": {
+    "mtime": 1786445949.8452506,
+    "ast_hash": "72f39b93229524f5eed762adc2def9e3",
+    "semantic_hash": "72f39b93229524f5eed762adc2def9e3"
+  },
+  "frontend/src/app/app.config.ts": {
+    "mtime": 1786446031.7574532,
+    "ast_hash": "3fc18509d68cced082355491dc1d59e0",
+    "semantic_hash": "3fc18509d68cced082355491dc1d59e0"
+  },
+  "frontend/src/app/app.routes.ts": {
+    "mtime": 1786448558.530936,
+    "ast_hash": "9cfcde4add2e0cff3029b778f11b95b1",
+    "semantic_hash": "9cfcde4add2e0cff3029b778f11b95b1"
+  },
+  "frontend/src/app/app.spec.ts": {
+    "mtime": 1786446096.567527,
+    "ast_hash": "b46c8ba32752dbbe6d994fd99e4111b7",
+    "semantic_hash": "b46c8ba32752dbbe6d994fd99e4111b7"
+  },
+  "frontend/src/app/app.ts": {
+    "mtime": 1786446076.2788873,
+    "ast_hash": "889430d53b5716ee36084b7c6c281759",
+    "semantic_hash": "889430d53b5716ee36084b7c6c281759"
+  },
+  "frontend/src/app/core/guards/auth.guard.ts": {
+    "mtime": 1786445966.404268,
+    "ast_hash": "3ce789be815dd6c4c0fc3a0666978483",
+    "semantic_hash": "3ce789be815dd6c4c0fc3a0666978483"
+  },
+  "frontend/src/app/core/interceptors/auth.interceptor.ts": {
+    "mtime": 1786445972.8370745,
+    "ast_hash": "9ccd87ce075fa1cf193a225375020cc3",
+    "semantic_hash": "9ccd87ce075fa1cf193a225375020cc3"
+  },
+  "frontend/src/app/core/services/auth.service.ts": {
+    "mtime": 1786445959.9064205,
+    "ast_hash": "96c00059d1898c646c5065c1cb70fb61",
+    "semantic_hash": "96c00059d1898c646c5065c1cb70fb61"
+  },
+  "frontend/src/app/core/services/verb.service.ts": {
+    "mtime": 1786448514.7673643,
+    "ast_hash": "8af31a0f55d0b4cd73e77a7ee1ad073e",
+    "semantic_hash": "8af31a0f55d0b4cd73e77a7ee1ad073e"
+  },
+  "frontend/src/app/features/flashcards/components/flashcard-item/flashcard-item.component.ts": {
+    "mtime": 1786448520.7651825,
+    "ast_hash": "2d78e7ab00fdfaf2e1fc8544670649d9",
+    "semantic_hash": "2d78e7ab00fdfaf2e1fc8544670649d9"
+  },
+  "frontend/src/app/features/flashcards/flashcards.component.ts": {
+    "mtime": 1786449606.6172512,
+    "ast_hash": "7de28d1406739cca46040ff767c8ceb5",
+    "semantic_hash": "7de28d1406739cca46040ff767c8ceb5"
+  },
+  "frontend/src/app/features/flashcards/models/verb.model.ts": {
+    "mtime": 1786448508.6674805,
+    "ast_hash": "1fe361e1b40a5cecf6e6a9d514973c38",
+    "semantic_hash": "1fe361e1b40a5cecf6e6a9d514973c38"
+  },
+  "frontend/src/app/features/users/users.component.ts": {
+    "mtime": 1786446002.1461408,
+    "ast_hash": "b7a6360473b215b04d67903fbfe6e6b0",
+    "semantic_hash": "b7a6360473b215b04d67903fbfe6e6b0"
+  },
+  "frontend/src/app/features/users/users.model.ts": {
+    "mtime": 1786445978.679299,
+    "ast_hash": "b12baaf14537a724083133ae9e742f55",
+    "semantic_hash": "b12baaf14537a724083133ae9e742f55"
+  },
+  "frontend/src/app/features/users/users.service.ts": {
+    "mtime": 1786445988.5309768,
+    "ast_hash": "da5f17c6b7dae3c8983eb1ec04e67c8c",
+    "semantic_hash": "da5f17c6b7dae3c8983eb1ec04e67c8c"
+  },
+  "frontend/src/environments/environment.ts": {
+    "mtime": 1786445949.8757358,
+    "ast_hash": "31c2d5daba455ae8c33c650cd52530ed",
+    "semantic_hash": "31c2d5daba455ae8c33c650cd52530ed"
+  },
+  "frontend/src/main.ts": {
+    "mtime": 1786445864.5091345,
+    "ast_hash": "1289536d6d8f94242a4ffc598d094633",
+    "semantic_hash": "1289536d6d8f94242a4ffc598d094633"
+  },
+  "frontend/tsconfig.app.json": {
+    "mtime": 1786445864.5035863,
+    "ast_hash": "e36d55dc3a81c35d0328a257103d6d3d",
+    "semantic_hash": "e36d55dc3a81c35d0328a257103d6d3d"
+  },
+  "frontend/tsconfig.json": {
+    "mtime": 1786445864.494226,
+    "ast_hash": "53bc94dc8fdca030fe291132353484a9",
+    "semantic_hash": "53bc94dc8fdca030fe291132353484a9"
+  },
+  "frontend/tsconfig.spec.json": {
+    "mtime": 1786445864.5035863,
+    "ast_hash": "9e61a5663cdfef3c963a3595ac1a7813",
+    "semantic_hash": "9e61a5663cdfef3c963a3595ac1a7813"
+  },
+  "CLAUDE.md": {
+    "mtime": 1786446204.1774817,
+    "ast_hash": "18995de22d1fcceae5e0d6286b4f1c85",
+    "semantic_hash": "18995de22d1fcceae5e0d6286b4f1c85"
+  },
+  "Documentacao/PRD \u2014 Painel de Flashcards de Verbos Irregulares.md": {
+    "mtime": 1786445211.2894602,
+    "ast_hash": "3ed579f4bb8bf31c33cf6ffe5db01cd8",
+    "semantic_hash": "3ed579f4bb8bf31c33cf6ffe5db01cd8"
+  },
+  "README.md": {
+    "mtime": 1786445828.8218102,
+    "ast_hash": "2675114cfd7ad506f79c3e4bcd95b916",
+    "semantic_hash": "2675114cfd7ad506f79c3e4bcd95b916"
+  },
+  "frontend/README.md": {
+    "mtime": 1786445864.494226,
+    "ast_hash": "c7ad63431876c05475a54dc9533b63c7",
+    "semantic_hash": "c7ad63431876c05475a54dc9533b63c7"
+  },
+  "frontend/src/app/app.html": {
+    "mtime": 1786446067.5666206,
+    "ast_hash": "eb2ce819db0e019d9b8afee11e3b5828",
+    "semantic_hash": "eb2ce819db0e019d9b8afee11e3b5828"
+  },
+  "frontend/src/app/features/flashcards/components/flashcard-item/flashcard-item.component.html": {
+    "mtime": 1786448527.157267,
+    "ast_hash": "9d59012b26794abcc8734b97b7201c1b",
+    "semantic_hash": "9d59012b26794abcc8734b97b7201c1b"
+  },
+  "frontend/src/app/features/flashcards/flashcards.component.html": {
+    "mtime": 1786451454.8885515,
+    "ast_hash": "afcd389aaf26b32a0ce00a8b86db499f",
+    "semantic_hash": "afcd389aaf26b32a0ce00a8b86db499f"
+  },
+  "frontend/src/app/features/users/users.component.html": {
+    "mtime": 1786446008.621362,
+    "ast_hash": "46e7597033c4a027ea383f73bef30311",
+    "semantic_hash": "46e7597033c4a027ea383f73bef30311"
+  },
+  "frontend/src/index.html": {
+    "mtime": 1786445864.5091345,
+    "ast_hash": "ff81e1e33011abb66bf0061d4a2f8fa4",
+    "semantic_hash": "ff81e1e33011abb66bf0061d4a2f8fa4"
+  }
+}

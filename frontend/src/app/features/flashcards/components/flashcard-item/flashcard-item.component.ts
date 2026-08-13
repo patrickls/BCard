@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardAnswers, FieldResult, FlashcardState } from '../../models/verb.model';
@@ -19,7 +19,7 @@ export class FlashcardItemComponent {
 
   @Output() stateChange = new EventEmitter<FlashcardState>();
 
-  // Cores de post-it para variação visual agradável entre os cards
+  // Cores de card para variação visual agradável entre os cards
   readonly postItColors = ['yellow-postit', 'peach-postit', 'mint-postit'];
 
   get colorClass(): string {
@@ -65,9 +65,10 @@ export class FlashcardItemComponent {
     this.stateChange.emit(updatedState);
   }
 
+  @HostListener('document:keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
     const isInput = (event.target as HTMLElement).tagName === 'INPUT';
-    if (!isInput && (event.key === 'Enter' || event.key === ' ')) {
+    if (!isInput && event.key === 'Enter') {
       event.preventDefault();
       this.toggleFlip();
     }

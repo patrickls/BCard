@@ -6,10 +6,9 @@
   [attr.aria-expanded]="state.isFlipped"
   [attr.aria-label]="'Card do verbo ' + state.verb.portuguese + (state.isFlipped ? ' (virado)' : ' (frente)')"
   (click)="toggleFlip($event)"
-  (keydown)="onKeydown($event)"
 >
   <div class="postit-card-inner">
-    <!-- FRENTE DO POST-IT -->
+    <!-- FRENTE DO CARD -->
     <div class="postit-face postit-card-front">
       <div class="tape-decor" aria-hidden="true"></div>
       
@@ -63,11 +62,11 @@
       </form>
 
       <footer class="card-footer">
-        <span class="flip-hint">💡 Clica ou tecla Enter/Espaço para conferir</span>
+        <span class="flip-hint">💡 Clique ou tecla Enter para conferir</span>
       </footer>
     </div>
 
-    <!-- VERSO DO POST-IT (GABARITO) -->
+    <!-- VERSO DO CARD (GABARITO) -->
     <div class="postit-face postit-card-back">
       <div class="tape-decor" aria-hidden="true"></div>
 
