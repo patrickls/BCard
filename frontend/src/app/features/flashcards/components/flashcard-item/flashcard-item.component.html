@@ -4,7 +4,8 @@
   tabindex="0"
   role="button"
   [attr.aria-expanded]="state.isFlipped"
-  [attr.aria-label]="'Card do verbo ' + state.verb.portuguese + (state.isFlipped ? ' (virado)' : ' (frente)')"
+  [attr.aria-disabled]="state.isFlipped"
+  [attr.aria-label]="'Card do verbo ' + state.verb.portuguese + (state.isFlipped ? ' (travado)' : ' (frente)')"
   (click)="toggleFlip($event)"
 >
   <div class="postit-card-inner">
@@ -27,6 +28,7 @@
             [(ngModel)]="state.answers.translation"
             [name]="'trans-' + index"
             (ngModelChange)="onInputChange()"
+            [readonly]="state.isFlipped"
             autocomplete="off"
             spellcheck="false"
           />
@@ -41,6 +43,7 @@
             [(ngModel)]="state.answers.pastSimple"
             [name]="'past-' + index"
             (ngModelChange)="onInputChange()"
+            [readonly]="state.isFlipped"
             autocomplete="off"
             spellcheck="false"
           />
@@ -55,6 +58,7 @@
             [(ngModel)]="state.answers.pastParticiple"
             [name]="'part-' + index"
             (ngModelChange)="onInputChange()"
+            [readonly]="state.isFlipped"
             autocomplete="off"
             spellcheck="false"
           />
@@ -135,7 +139,7 @@
       </div>
 
       <footer class="card-footer">
-        <span class="flip-hint">🔄 Clique novamente para re-editar</span>
+        <span class="flip-hint">🔒 Card travado — inicie uma nova rodada para tentar de novo</span>
       </footer>
     </div>
   </div>

@@ -32,33 +32,33 @@ export class FlashcardItemComponent {
       return;
     }
 
-    const nextFlipped = !this.state.isFlipped;
-    let result: FieldResult | undefined = this.state.result;
-
-    if (nextFlipped) {
-      // Ao virar para o verso, calcula o resultado da correção automática
-      result = {
-        translationCorrect: this.verbService.checkAnswer(
-          this.state.answers.translation,
-          this.state.verb.infinitive,
-          true
-        ),
-        pastSimpleCorrect: this.verbService.checkAnswer(
-          this.state.answers.pastSimple,
-          this.state.verb.pastSimple,
-          false
-        ),
-        pastParticipleCorrect: this.verbService.checkAnswer(
-          this.state.answers.pastParticiple,
-          this.state.verb.pastParticiple,
-          false
-        ),
-      };
+    // Card travado permanentemente após virar — só "Nova rodada" libera edição de novo
+    if (this.state.isFlipped) {
+      return;
     }
+
+    // Ao virar para o verso, calcula o resultado da correção automática
+    const result: FieldResult = {
+      translationCorrect: this.verbService.checkAnswer(
+        this.state.answers.translation,
+        this.state.verb.infinitive,
+        true
+      ),
+      pastSimpleCorrect: this.verbService.checkAnswer(
+        this.state.answers.pastSimple,
+        this.state.verb.pastSimple,
+        false
+      ),
+      pastParticipleCorrect: this.verbService.checkAnswer(
+        this.state.answers.pastParticiple,
+        this.state.verb.pastParticiple,
+        false
+      ),
+    };
 
     const updatedState: FlashcardState = {
       ...this.state,
-      isFlipped: nextFlipped,
+      isFlipped: true,
       result,
     };
 
@@ -66,6 +66,11 @@ export class FlashcardItemComponent {
   }
 
   onInputChange(): void {
+    // Card travado não aceita mais alterações
+    if (this.state.isFlipped) {
+      return;
+    }
+
     // Se o usuário altera a resposta enquanto o estado é atualizado
     this.stateChange.emit({
       ...this.state,

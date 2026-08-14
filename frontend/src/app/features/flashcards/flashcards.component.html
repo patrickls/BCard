@@ -71,6 +71,18 @@
           <span class="btn-icon">🔄</span>
           <span>New Round</span>
         </button>
+
+        <button
+          type="button"
+          class="btn-finish-session"
+          (click)="finishStudySession()"
+          [disabled]="sessionFieldsChecked() === 0"
+          [title]="sessionFieldsChecked() === 0 ? 'Responda pelo menos um card antes de concluir' : ''"
+          aria-label="Concluir estudos de hoje e ver o resumo da sessão"
+        >
+          <span class="btn-icon">🏁</span>
+          <span>Concluir estudos de hoje</span>
+        </button>
       </div>
     </div>
   </header>
@@ -103,4 +115,25 @@
       <span class="tip-item"><kbd>Tab</kbd> Navegar entre campos e cards</span>
     </div>
   </footer>
+
+  <!-- MODAL DE RESULTADO DA SESSÃO -->
+  <div class="summary-modal-backdrop" *ngIf="showSummaryModal()">
+    <div
+      #summaryDialog
+      class="summary-modal"
+      [ngClass]="'level-' + sessionLevel()"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="'Resultado da sessão de estudos'"
+      aria-live="assertive"
+      tabindex="-1"
+      (keydown.escape)="continueStudying()"
+    >
+      <h2 class="summary-title">Resultado da sessão</h2>
+      <p class="summary-message">{{ sessionMessage() }}</p>
+      <button type="button" class="btn-continue-studying" (click)="continueStudying()">
+        Continuar estudando
+      </button>
+    </div>
+  </div>
 </div>
