@@ -131,6 +131,8 @@ Sugestão:
 
 Sugestão: Conventional Commits (`feat:`, `fix:`, `chore:`, `refactor:`) + branches `feature/`, `fix/`, `chore/`.
 
+**Regra dura — push:** nenhum `git push` (nem `--force`) deve ser executado sem o Patrick pedir isso explicitamente naquela interação. Autorização dada no passado não vale para o próximo push — cada push precisa de pedido novo e específico.
+
 ## 11. Variáveis de Ambiente
 
 `.env` fora do controle de versão, com `.env.example` versionado. Mínimo esperado:
