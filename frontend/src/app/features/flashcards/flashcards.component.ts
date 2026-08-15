@@ -45,6 +45,18 @@ export class FlashcardsComponent implements OnInit {
     return 'fracasso';
   });
 
+  private readonly levelImages: Record<'super-sucesso' | 'sucesso' | 'mediana' | 'fracasso', string> = {
+    'super-sucesso': 'images/session-levels/trofeu.png',
+    sucesso: 'images/session-levels/medalha-ouro.png',
+    mediana: 'images/session-levels/medalha-prata.png',
+    fracasso: 'images/session-levels/medalha-bronze.png',
+  };
+
+  sessionImage = computed(() => {
+    const level = this.sessionLevel();
+    return level ? this.levelImages[level] : null;
+  });
+
   sessionMessage = computed(() => {
     const level = this.sessionLevel();
     if (!level) return '';

@@ -383,6 +383,14 @@
     border-top-color: #dc2626;
   }
 
+  .summary-level-image {
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 1rem;
+    object-fit: contain;
+  }
+
   .summary-title {
     font-size: 1.35rem;
     font-weight: 800;

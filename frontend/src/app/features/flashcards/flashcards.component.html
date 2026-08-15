@@ -129,6 +129,12 @@
       tabindex="-1"
       (keydown.escape)="continueStudying()"
     >
+      <img
+        *ngIf="sessionImage()"
+        class="summary-level-image"
+        [src]="sessionImage()"
+        [alt]="'Nível da sessão: ' + sessionLevel()"
+      />
       <h2 class="summary-title">Resultado da sessão</h2>
       <p class="summary-message">{{ sessionMessage() }}</p>
       <button type="button" class="btn-continue-studying" (click)="continueStudying()">
