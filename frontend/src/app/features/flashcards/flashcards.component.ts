@@ -171,6 +171,7 @@ export class FlashcardsComponent implements OnInit {
     this.sessionRounds.set(0);
     this.sessionFieldsChecked.set(0);
     this.sessionFieldsCorrect.set(0);
+    window.location.reload();
   }
 
   trackByCard(_index: number, card: FlashcardState): string {
