@@ -3,6 +3,8 @@ import { AppDataSource } from "../config/database";
 import { VerbEntity } from "../models/verb.entity";
 import { HttpError } from "../middlewares/error-handler.middleware";
 
+export type VerbWithHints = VerbEntity & { excludedOptions: string[] };
+
 export class VerbService {
   private repository: Repository<VerbEntity>;
 
@@ -16,30 +18,39 @@ export class VerbService {
    * cycleReset=true indica que o ciclo de "já exibidos" foi reiniciado nesta rodada -
    * o caller deve descartar o histórico de exclusão anterior e recomeçar a partir
    * dos verbos retornados.
+   *
+   * Cada verbo retornado inclui excludedOptions: outros infinitivos que têm a mesma
+   * tradução em português (ex: "Pôr" -> lay/put/set), calculados a partir do catálogo
+   * completo (independente do escopo `list`), para avisar o usuário sobre traduções
+   * alternativas que não serão aceitas nessa rodada.
    */
   async getRandomVerbs(
     count: number = 3,
     list?: string,
     excludeIds: string[] = []
-  ): Promise<{ verbs: VerbEntity[]; cycleReset: boolean }> {
+  ): Promise<{ verbs: VerbWithHints[]; cycleReset: boolean }> {
+    let allVerbs: VerbEntity[] = [];
+
     try {
-      let query = this.repository.createQueryBuilder("verb");
-
-      if (list) {
-        query = query.where("verb.list = :list", { list });
-      }
-
-      const pool = await query.getMany();
-
-      if (pool.length > 0) {
-        return this.pickRound(pool, count, excludeIds);
-      }
+      allVerbs = await this.repository.find();
     } catch (error) {
       console.warn("Aviso: Falha ao consultar o banco para verbos. Usando dados locais como fallback.", error);
     }
 
-    // Fallback de verbos caso o banco não esteja inicializado
-    return this.pickRound(this.getFallbackPool(list), count, excludeIds);
+    if (allVerbs.length === 0) {
+      allVerbs = this.getFallbackPool();
+    }
+
+    const pool = list ? allVerbs.filter((v) => v.list === list) : allVerbs;
+    const { verbs, cycleReset } = this.pickRound(pool, count, excludeIds);
+
+    const siblingsMap = this.buildSiblingsMap(allVerbs);
+    const hintedVerbs = verbs.map((verb) => ({
+      ...verb,
+      excludedOptions: (siblingsMap.get(verb.portuguese) ?? []).filter((inf) => inf !== verb.infinitive),
+    }));
+
+    return { verbs: hintedVerbs, cycleReset };
   }
 
   async getAllVerbs(): Promise<VerbEntity[]> {
@@ -89,7 +100,23 @@ export class VerbService {
     return { verbs: [...shuffledRemaining, ...fill], cycleReset: true };
   }
 
-  private getFallbackPool(list?: string): VerbEntity[] {
+  /**
+   * Agrupa os infinitivos por tradução em português, para identificar verbos cujo
+   * significado é ambíguo (mais de um infinitivo válido para o mesmo português).
+   */
+  private buildSiblingsMap(verbs: VerbEntity[]): Map<string, string[]> {
+    const map = new Map<string, string[]>();
+    for (const verb of verbs) {
+      const infinitives = map.get(verb.portuguese) ?? [];
+      if (!infinitives.includes(verb.infinitive)) {
+        infinitives.push(verb.infinitive);
+      }
+      map.set(verb.portuguese, infinitives);
+    }
+    return map;
+  }
+
+  private getFallbackPool(): VerbEntity[] {
     const defaultVerbs: Array<Omit<VerbEntity, "createdAt" | "updatedAt">> = [
       // Lista 2
       { id: "1", portuguese: "Esconder", infinitive: "hide", pastSimple: "hid", pastParticiple: "hidden", list: "Lista 2" },
@@ -190,13 +217,8 @@ export class VerbService {
       { id: "94", portuguese: "Ouvir", infinitive: "hear", pastSimple: "heard", pastParticiple: "heard", list: "Lista 1" },
     ];
 
-    let filtered = defaultVerbs;
-    if (list) {
-      filtered = defaultVerbs.filter((v) => v.list === list);
-    }
-
     const now = new Date();
-    return filtered.map((v) => ({
+    return defaultVerbs.map((v) => ({
       ...v,
       createdAt: now,
       updatedAt: now,

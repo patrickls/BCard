@@ -56,11 +56,15 @@ export class VerbService {
   }
 
   /**
-   * Compara a resposta dada pelo usuário com a resposta esperada
+   * Compara a resposta dada pelo usuário com a resposta esperada.
+   * Respostas compostas (ex: "leapt / leaped") aceitam qualquer uma das
+   * alternativas separadas por "/".
    */
   checkAnswer(given: string, expected: string, isTranslation: boolean = false): boolean {
     const normGiven = this.normalizeInput(given, isTranslation);
-    const normExpected = this.normalizeInput(expected, isTranslation);
-    return normGiven !== '' && normGiven === normExpected;
+    if (normGiven === '') return false;
+
+    const alternatives = expected.split('/').map((alt) => this.normalizeInput(alt, isTranslation));
+    return alternatives.includes(normGiven);
   }
 }

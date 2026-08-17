@@ -32,6 +32,9 @@
             autocomplete="off"
             spellcheck="false"
           />
+          <p class="excluded-hint" *ngIf="state.verb.excludedOptions?.length">
+            Opções excluídas: {{ state.verb.excludedOptions?.join(', ') }}
+          </p>
         </div>
 
         <div class="field-group">

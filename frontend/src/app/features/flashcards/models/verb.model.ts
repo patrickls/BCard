@@ -7,6 +7,8 @@ export interface Verb {
   list?: string;
   createdAt?: string;
   updatedAt?: string;
+  /** Outros infinitivos com a mesma tradução em português (ex: "Pôr" -> lay/put/set), não aceitos nesta rodada. */
+  excludedOptions?: string[];
 }
 
 export interface CardAnswers {
