@@ -37,6 +37,19 @@ export class FlashcardItemComponent {
       return;
     }
 
+    this.flip();
+  }
+
+  // Vira o card ao sair do último campo via Tab, seguindo para o próximo card
+  flipOnTabOut(event: Event): void {
+    if ((event as KeyboardEvent).shiftKey || this.state.isFlipped) {
+      return;
+    }
+
+    this.flip();
+  }
+
+  private flip(): void {
     // Ao virar para o verso, calcula o resultado da correção automática
     const result: FieldResult = {
       translationCorrect: this.verbService.checkAnswer(

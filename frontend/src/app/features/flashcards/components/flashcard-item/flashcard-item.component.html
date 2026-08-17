@@ -61,6 +61,7 @@
             [(ngModel)]="state.answers.pastParticiple"
             [name]="'part-' + index"
             (ngModelChange)="onInputChange()"
+            (keydown.tab)="flipOnTabOut($event)"
             [readonly]="state.isFlipped"
             autocomplete="off"
             spellcheck="false"
