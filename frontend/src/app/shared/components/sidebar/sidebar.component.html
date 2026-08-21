@@ -1,0 +1,26 @@
+<nav class="app-sidebar" aria-label="Navegação principal">
+  <div class="sidebar-brand">
+    <img class="logo-icon" src="pills.jpeg" alt="" aria-hidden="true" />
+    <span class="brand-name">BCards</span>
+  </div>
+
+  <a
+    class="nav-link"
+    routerLink="/flashcards"
+    routerLinkActive="active"
+    #rlaVerbs="routerLinkActive"
+    [attr.aria-current]="rlaVerbs.isActive ? 'page' : null"
+  >
+    Verbs
+  </a>
+
+  <a
+    class="nav-link"
+    routerLink="/prepositions"
+    routerLinkActive="active"
+    #rlaPrepositions="routerLinkActive"
+    [attr.aria-current]="rlaPrepositions.isActive ? 'page' : null"
+  >
+    Prepositions
+  </a>
+</nav>

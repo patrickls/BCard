@@ -1,4 +1,4 @@
-<div class="flashcards-dashboard">
+<div class="prepositions-dashboard">
   <!-- HEADER DO PAINEL -->
   <header class="dashboard-header">
     <!-- BARRA SUPERIOR DA MARCA / PRODUTO -->
@@ -7,57 +7,24 @@
         <img class="logo-icon" src="pills.jpeg" alt="BCards logo" />
         <span class="brand-name">BCards</span>
       </div>
-      <span class="module-pill">Verbos Irregulares</span>
-    </div>
-
-    <!-- SELETOR DE LISTAS DE VERBOS -->
-    <div class="list-selector-bar" role="group" aria-label="Seleção de lista de verbos">
-      <span class="selector-label">Selecionar lista:</span>
-      <div class="selector-pills">
-        <button
-          type="button"
-          class="pill-btn"
-          [class.active]="selectedList() === 'Lista 1'"
-          [attr.aria-pressed]="selectedList() === 'Lista 1'"
-          (click)="selectList('Lista 1')"
-        >
-          Lista 1
-        </button>
-        <button
-          type="button"
-          class="pill-btn"
-          [class.active]="selectedList() === 'Lista 2'"
-          [attr.aria-pressed]="selectedList() === 'Lista 2'"
-          (click)="selectList('Lista 2')"
-        >
-          Lista 2
-        </button>
-        <button
-          type="button"
-          class="pill-btn"
-          [class.active]="selectedList() === null"
-          [attr.aria-pressed]="selectedList() === null"
-          (click)="selectList(null)"
-        >
-          Todos
-        </button>
-      </div>
+      <span class="module-pill">Prepositions</span>
     </div>
 
     <!-- HERO DO MÓDULO & PLACAR -->
     <div class="header-main">
       <div class="header-title-container">
-        <h1 class="main-title">Verbs Dashboard</h1>
+        <h1 class="main-title">Prepositions Dashboard</h1>
         <p class="subtitle">
-          Teste sua memória ativa: preencha as 3 formas do verbo e vire o card para conferir a correção.
+          Teste sua memória ativa: responda os 3 tipos de card (tradução, uso obrigatório e "to"/"for") e vire cada
+          um para conferir a correção.
         </p>
       </div>
 
       <!-- PAINEL DE PLACAR & AÇÃO -->
       <div class="action-bar">
-        <div class="score-badge" [attr.aria-label]="'Placar atual ' + roundScore() + ' de 9 acertos'">
+        <div class="score-badge" [attr.aria-label]="'Placar atual ' + roundScore() + ' de 3 acertos'">
           <span class="score-label">Round Score</span>
-          <span class="score-value">{{ roundScore() }} <small>/ 9</small></span>
+          <span class="score-value">{{ roundScore() }} <small>/ 3</small></span>
           <span class="score-detail">({{ flippedCardsCount() }}/3 cards virados)</span>
         </div>
 
@@ -66,7 +33,7 @@
           class="btn-new-round"
           (click)="startNewRound()"
           [disabled]="loading()"
-          aria-label="Sortear nova rodada com outros 3 verbos"
+          aria-label="Sortear nova rodada com outra preposição de cada tipo"
         >
           <span class="btn-icon">🔄</span>
           <span>New Round</span>
@@ -90,7 +57,7 @@
   <!-- ESTADO DE CARREGAMENTO -->
   <div class="loading-container" *ngIf="loading()">
     <div class="spinner"></div>
-    <p>Sorteando novos verbos...</p>
+    <p>Sorteando nova rodada...</p>
   </div>
 
   <!-- ESTADO DE ERRO -->
@@ -99,14 +66,22 @@
     <button type="button" class="btn-retry" (click)="startNewRound()">Tentar Novamente</button>
   </div>
 
-  <!-- GRID DE FLASHCARDS (CARDS) -->
-  <main class="cards-grid" *ngIf="!loading() && !error()">
-    <app-flashcard-item
-      *ngFor="let card of cardStates(); let i = index; trackBy: trackByCard"
-      [state]="card"
-      [index]="i"
-      (stateChange)="onStateChange(i, $event)"
-    ></app-flashcard-item>
+  <!-- GRID DE CARDS -->
+  <main class="cards-grid" *ngIf="!loading() && !error() && translationCard() && requiredUsageCard() && toForCard()">
+    <app-preposition-translation-card
+      [state]="translationCard()!"
+      (stateChange)="onTranslationStateChange($event)"
+    ></app-preposition-translation-card>
+
+    <app-preposition-required-usage-card
+      [state]="requiredUsageCard()!"
+      (stateChange)="onRequiredUsageStateChange($event)"
+    ></app-preposition-required-usage-card>
+
+    <app-preposition-to-for-card
+      [state]="toForCard()!"
+      (stateChange)="onToForStateChange($event)"
+    ></app-preposition-to-for-card>
   </main>
 
   <!-- FOOTER COM DICAS E TECLAS DE ATALHO -->

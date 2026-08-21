@@ -8,6 +8,11 @@ export const routes: Routes = [
       import('./features/flashcards/flashcards.component').then((m) => m.FlashcardsComponent),
   },
   {
+    path: 'prepositions',
+    loadComponent: () =>
+      import('./features/prepositions/prepositions.component').then((m) => m.PrepositionsComponent),
+  },
+  {
     path: 'users',
     canActivate: [authGuard],
     loadComponent: () => import('./features/users/users.component').then((m) => m.UsersComponent),

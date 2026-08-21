@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, computed, effect, inject, signal, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VerbService } from '../../core/services/verb.service';
+import { SessionGamificationService } from '../../core/services/session-gamification.service';
 import { FlashcardState, Verb } from './models/verb.model';
 import { FlashcardItemComponent } from './components/flashcard-item/flashcard-item.component';
 
@@ -10,9 +11,11 @@ import { FlashcardItemComponent } from './components/flashcard-item/flashcard-it
   imports: [CommonModule, FlashcardItemComponent],
   templateUrl: './flashcards.component.html',
   styleUrl: './flashcards.component.scss',
+  providers: [SessionGamificationService],
 })
 export class FlashcardsComponent implements OnInit {
   private verbService = inject(VerbService);
+  sessionService = inject(SessionGamificationService);
 
   cardStates = signal<FlashcardState[]>([]);
   loading = signal(false);
@@ -25,69 +28,15 @@ export class FlashcardsComponent implements OnInit {
    */
   private shownVerbIdsByScope = new Map<string, Set<string>>();
 
-  // Contadores de sessão acumulados em memória — sem persistência entre reloads (decisão de produto)
-  sessionRounds = signal(0); // X: rodadas iniciadas
-  sessionFieldsChecked = signal(0); // Z: campos corrigidos
-  sessionFieldsCorrect = signal(0); // Y: campos corretos
-
-  showSummaryModal = signal(false);
-
   private summaryDialog = viewChild<ElementRef<HTMLElement>>('summaryDialog');
-
-  sessionLevel = computed<'super-sucesso' | 'sucesso' | 'mediana' | 'fracasso' | null>(() => {
-    const z = this.sessionFieldsChecked();
-    if (z === 0) return null;
-
-    const ratio = this.sessionFieldsCorrect() / z;
-    if (ratio >= 0.9) return 'super-sucesso';
-    if (ratio >= 0.75) return 'sucesso';
-    if (ratio >= 0.5) return 'mediana';
-    return 'fracasso';
-  });
-
-  private readonly levelImages: Record<'super-sucesso' | 'sucesso' | 'mediana' | 'fracasso', string> = {
-    'super-sucesso': 'images/session-levels/trofeu.png',
-    sucesso: 'images/session-levels/medalha-ouro.png',
-    mediana: 'images/session-levels/medalha-prata.png',
-    fracasso: 'images/session-levels/medalha-bronze.png',
-  };
-
-  sessionImage = computed(() => {
-    const level = this.sessionLevel();
-    return level ? this.levelImages[level] : null;
-  });
-
-  sessionMessage = computed(() => {
-    const level = this.sessionLevel();
-    if (!level) return '';
-
-    const y = this.sessionFieldsCorrect();
-    const z = this.sessionFieldsChecked();
-    const rounds = this.roundLabel(this.sessionRounds());
-
-    switch (level) {
-      case 'super-sucesso':
-        return `Uau, ${y} de ${z} acertos em ${rounds} — você está literalmente arrasando! Isso é nível Rock Star. Bora continuar nesse embalo?`;
-      case 'sucesso':
-        return `Muito bem! ${y} de ${z} acertos em ${rounds} — você está mandando bem de verdade. Continue nesse ritmo!`;
-      case 'mediana':
-        return `Boa! ${y} de ${z} acertos em ${rounds}. Você está no caminho certo — mais um pouco de prática e o próximo nível é seu.`;
-      default:
-        return `${y} de ${z} acertos em ${rounds}. Sem problema — todo Rock Star começa desafinado. Bora estudar mais um pouco e voltar mais forte?`;
-    }
-  });
 
   constructor() {
     // Foca o modal ao abrir, para leitores de tela e navegação por teclado
     effect(() => {
-      if (this.showSummaryModal()) {
+      if (this.sessionService.showSummaryModal()) {
         queueMicrotask(() => this.summaryDialog()?.nativeElement.focus());
       }
     });
-  }
-
-  private roundLabel(x: number): string {
-    return x === 1 ? '1 rodada' : `${x} rodadas`;
   }
 
   ngOnInit(): void {
@@ -125,7 +74,7 @@ export class FlashcardsComponent implements OnInit {
             isFlipped: false,
           }))
         );
-        this.sessionRounds.update((x) => x + 1);
+        this.sessionService.recordRoundStart();
         this.loading.set(false);
       },
       error: (err) => {
@@ -146,32 +95,10 @@ export class FlashcardsComponent implements OnInit {
         Boolean
       ).length;
 
-      this.sessionFieldsChecked.update((z) => z + 3);
-      this.sessionFieldsCorrect.update((y) => y + correctInCard);
+      this.sessionService.recordFieldsChecked(3, correctInCard);
     }
 
     this.cardStates.update((states) => states.map((s, i) => (i === index ? newState : s)));
-  }
-
-  /**
-   * Abre o modal de resultado da sessão. Sem efeito se nenhum campo foi corrigido ainda.
-   */
-  finishStudySession(): void {
-    if (this.sessionFieldsChecked() === 0) {
-      return;
-    }
-    this.showSummaryModal.set(true);
-  }
-
-  /**
-   * Fecha o modal e zera os contadores de sessão para começar do zero.
-   */
-  continueStudying(): void {
-    this.showSummaryModal.set(false);
-    this.sessionRounds.set(0);
-    this.sessionFieldsChecked.set(0);
-    this.sessionFieldsCorrect.set(0);
-    window.location.reload();
   }
 
   trackByCard(_index: number, card: FlashcardState): string {

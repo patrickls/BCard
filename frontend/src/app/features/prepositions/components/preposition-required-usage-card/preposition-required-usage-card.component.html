@@ -1,0 +1,71 @@
+<div
+  class="postit-card-container peach-postit"
+  [ngClass]="state.isFlipped ? 'flipped' : ''"
+  tabindex="0"
+  role="button"
+  [attr.aria-expanded]="state.isFlipped"
+  [attr.aria-disabled]="state.isFlipped"
+  [attr.aria-label]="'Card de uso obrigatório ' + state.item.word + (state.isFlipped ? ' (travado)' : ' (frente)')"
+  (click)="toggleFlip($event)"
+>
+  <div class="postit-card-inner">
+    <!-- FRENTE -->
+    <div class="postit-face postit-card-front">
+      <div class="tape-decor" aria-hidden="true"></div>
+
+      <header class="card-header">
+        <span class="card-number">#2</span>
+      </header>
+
+      <div class="prompt">{{ state.item.word }}</div>
+
+      <form class="card-form" (submit)="$event.preventDefault()">
+        <div class="field-group">
+          <label for="required-usage-answer">Qual preposição deve ser utilizada (uso obrigatório)</label>
+          <input
+            id="required-usage-answer"
+            type="text"
+            placeholder="ex: at"
+            [(ngModel)]="state.answer"
+            name="required-usage-answer"
+            (ngModelChange)="onInputChange()"
+            (keydown.tab)="flipOnTabOut($event)"
+            [readonly]="state.isFlipped"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+      </form>
+
+      <footer class="card-footer">
+        <span class="flip-hint">💡 Clique para conferir</span>
+      </footer>
+    </div>
+
+    <!-- VERSO -->
+    <div class="postit-face postit-card-back">
+      <div class="tape-decor" aria-hidden="true"></div>
+
+      <header class="card-header">
+        <span class="gabarito-badge">Gabarito</span>
+      </header>
+
+      <div class="results-list" *ngIf="state.result">
+        <div class="result-row" [ngClass]="state.result.correct ? 'correct' : 'incorrect'">
+          <div class="result-label-group">
+            <span class="field-name">Resposta esperada:</span>
+            <span class="expected-answer">{{ state.item.answer }}</span>
+          </div>
+          <div class="result-status">
+            <span class="user-given" *ngIf="state.answer">("{{ state.answer }}")</span>
+            <span class="status-badge">{{ state.result.correct ? '✓' : '✗' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="card-footer">
+        <span class="flip-hint">🔒 Card travado — inicie uma nova rodada para tentar de novo</span>
+      </footer>
+    </div>
+  </div>
+</div>
