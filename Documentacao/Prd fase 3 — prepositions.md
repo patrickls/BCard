@@ -1,4 +1,6 @@
-**Status:** Rascunho | **Owner:** [A DEFINIR] | **Versão:** 0.1
+**Status:** Rascunho | **Owner:** [A DEFINIR] | **Versão:** 0.2
+
+**Nota de versão (2026-08-21):** um 4º tipo de card ("Tipo D — in/on/at") foi implementado após a v0.1 deste PRD, o que confirma o risco já sinalizado na Seção 9 ("adicionar um 4º tipo quebra a premissa de 1 card de cada tipo por rodada"). A Seção 4 ("Sorteio e cobertura de tipos") e os RFs/critérios de aceite relacionados foram atualizados para refletir a decisão tomada. Ver também a linha correspondente na Seção 9.
 
 **Depende de:** PRD — Painel de Flashcards de Verbos Irregulares, v0.2 (RF01–RF12) e PRD Fase 2 — Trava de Respostas e Gamificação de Sessão (RF13–RF17)
 
@@ -16,7 +18,7 @@
 
 - O sistema hoje cobre apenas verbos irregulares. Preposições são outra fonte clássica de erro para falantes de português aprendendo inglês — em especial "to" vs. "for", porque o português usa "para" para os dois casos sem distinção, e o estudante não tem hoje nenhum mecanismo de autoteste específico para isso.
 
-- Propomos uma segunda seção do sistema, "Prepositions", acessível por um novo menu lateral (Verbs / Prepositions), reaproveitando a mecânica de flashcard e a gamificação de sessão já validadas em Verbs, mas com 3 tipos de card de formato distinto (tradução composta, uso obrigatório, uso contextual de "to"/"for") em vez de um formato único.
+- Propomos uma segunda seção do sistema, "Prepositions", acessível por um novo menu lateral (Verbs / Prepositions), reaproveitando a mecânica de flashcard e a gamificação de sessão já validadas em Verbs, mas com 4 tipos de card de formato distinto (tradução composta, uso obrigatório, uso contextual de "to"/"for", e completar frase com "in"/"on"/"at") em vez de um formato único.
 
 - Métrica de sucesso: [A DEFINIR] — mesma limitação dos PRDs anteriores (sem baseline de uso real). Proposta preliminar na Seção 8.
 
@@ -44,7 +46,7 @@ Mesma persona do PRD v0.2 (estudante autônomo de inglês básico/intermediário
 
   
 
-- **JTBD:** Quando estou revisando preposições em inglês, preciso testar ativamente se sei aplicar a preposição correta em diferentes tipos de contexto (tradução direta, uso obrigatório após certas palavras, e a escolha entre "to" e "for"), para identificar e corrigir os erros que cometo por interferência do português.
+- **JTBD:** Quando estou revisando preposições em inglês, preciso testar ativamente se sei aplicar a preposição correta em diferentes tipos de contexto (tradução direta, uso obrigatório após certas palavras, a escolha entre "to" e "for", e o uso de "in"/"on"/"at" em frases de lugar e tempo), para identificar e corrigir os erros que cometo por interferência do português.
 
   
 
@@ -78,11 +80,11 @@ Mesma persona do PRD v0.2 (estudante autônomo de inglês básico/intermediário
 
   
 
-**Prepositions — 3 tipos de card:**
+**Prepositions — 4 tipos de card:**
 
   
 
-A nota original trazia 4 tipos de card, mas os tipos 3 e 4 ("quando usar to ou for" e "quando usar to") foram **fundidos por decisão do owner** em um único tipo de card, que passa a carregar duas regras de explicação diferentes por item (ver Tipo C abaixo).
+A nota original trazia 4 tipos de card. Os tipos 3 e 4 originais ("quando usar to ou for" e "quando usar to") foram **fundidos por decisão do owner** em um único tipo (Tipo C, com duas regras de explicação por item). Posteriormente, um novo card independente — **Tipo D, "in/on/at"** — foi adicionado, cobrindo justamente a categoria de preposições de lugar/tempo que a Seção "O que NÃO fazemos" da v0.1 deste PRD listava como fora de escopo (ver nota nessa seção).
 
   
 
@@ -91,6 +93,7 @@ A nota original trazia 4 tipos de card, mas os tipos 3 e 4 ("quando usar to ou f
 | **Tipo A (#1)** | Número "#1" + Significado em português (ex.: "Em") + Label "Qual a preposição em inglês (tradução)" | Gabarito + certo/errado, padrão de Verbs | Composta quando há mais de uma preposição válida (ver regra abaixo) |
 | **Tipo B (#2)** | Número "#2" + Palavra em inglês (ex.: "Good") + Label "Qual preposição deve ser utilizada (uso obrigatório)" | Gabarito + certo/errado, padrão de Verbs | Simples (1 preposição) |
 | **Tipo C (#3)** | Número "#3" + Frase em português (ex.: "Eu estou indo para Miami.") + Label "Traduza a frase usando TO ou FOR" | Gabarito + certo/errado + **texto de explicação específico do item** quando errado | Frase completa em inglês |
+| **Tipo D (#4)** | Número "#4" + Título fixo "in / on / at" + Subtítulo "Complete a frase" + frase em inglês com lacuna no meio (input de 2 caracteres) | Gabarito (frase completa com a preposição correta) + certo/errado + **texto de explicação específico do item, exibido sempre** (certo ou errado — diferente do Tipo C, que só mostra a explicação ao errar) | Simples (1 preposição: in, on ou at) |
 
   
 
@@ -146,13 +149,35 @@ Ambos os grupos compartilham a mesma estrutura de card (número "#3", label "Tra
 
   
 
-**Sorteio e cobertura de tipos — SUPOSIÇÃO A CONFIRMAR:**
+**Tipo D — conteúdo (22 itens, agrupados em 9 regras):**
 
-Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card — o mesmo número de cards por rodada (3) já estabelecido em Verbs. Estou assumindo que "o sorteio deve abranger todos os tipos, sempre" significa: **cada rodada tem exatamente 1 card de cada tipo (A, B, C)**, garantia por rodada — não uma garantia mais fraca de cobertura ao longo de várias rodadas. Se essa não for a leitura correta, a lógica de sorteio muda substancialmente (sorteio livre entre um pool único vs. um sorteio independente por tipo).
+Frase em inglês com lacuna (`___`) marcando onde a preposição entra, mais a preposição correta (`in`, `on` ou `at`) e o texto de explicação da regra — mesmo padrão de "grupo + explicação por grupo" do Tipo C, mas com 9 grupos em vez de 2:
+
+1. Local da cidade (at) — 3 frases (ex.: "I am ___ the bus station")
+2. Time/Moment/Instant (at) — 2 frases
+3. Ideia de proximidade (at) — 2 frases
+4. Bom ou ruim em algo (at) — 2 frases
+5. Meios de transporte, exceto carro que usa "in" (on) — 2 frases
+6. Dias (on) — 2 frases
+7. Sobre, em cima (on) — 2 frases
+8. Elétrico/eletrônico (on) — 4 frases
+9. Wildcard/dentro, "coringa" quando nenhuma outra regra se aplica (in) — 3 frases
+
+**Diferença de comportamento em relação ao Tipo C (decisão do owner, 2026-08-21):** no Tipo D, tanto a frase completa (gabarito) quanto o texto de explicação da regra são exibidos **sempre** que o card é virado, acertando ou errando — não só ao errar como no Tipo C. Essa é uma característica exclusiva do Tipo D; os demais tipos (A, B, C) mantêm o comportamento original (explicação só ao errar, quando aplicável).
 
   
 
-**Regra de não repetição (herdada de RF12, confirmada pelo owner):** dentro de cada tipo de card, um item já exibido não é sorteado de novo até que todos os demais itens daquele tipo já tenham aparecido pelo menos uma vez. O ciclo é **independente por tipo** (mesma lógica de "por lista" em Verbs, aplicada a "por tipo" aqui). Nota de escala: o Tipo B tem só 4 itens — o ciclo se esgota a cada 4 rodadas, o que pode ficar perceptível/repetitivo mais rápido que os outros tipos (9 e 12 itens).
+**Sorteio e cobertura de tipos — decisão confirmada (2026-08-21, substitui a suposição da v0.1):**
+
+Com a adição do Tipo D, Prepositions passou a ter 4 tipos de card, mas o tamanho da rodada continuou em 3 cards (não escalou para 4) — exatamente o risco antecipado na Seção 9 da v0.1 ("adicionar um 4º tipo quebra a premissa de 1 card de cada tipo por rodada"). A decisão tomada, confirmada pelo owner:
+
+- **Cada rodada sorteia 3 dos 4 tipos disponíveis**, sempre distintos entre si (nunca 2 cards do mesmo tipo na mesma rodada) — o 4º tipo fica de fora daquela rodada.
+- O sorteio de **quais** 3 tipos aparecem é **aleatório puro a cada rodada**, sem memória entre rodadas e sem garantia de cobertura — por acaso, um tipo pode ficar de fora de várias rodadas seguidas, ou aparecer em várias seguidas. Não há um ciclo de justiça entre tipos (diferente da regra de não-repetição *dentro* de cada tipo, que segue garantida — ver abaixo).
+- Esta decisão prioriza simplicidade de implementação sobre garantia de cobertura equilibrada entre tipos; **[A DEFINIR]** se isso deve evoluir para um ciclo justo entre tipos (ex.: garantir que todos os 4 tipos apareçam a cada 4 rodadas) caso o owner observe na prática que um tipo fica de fora com frequência perceptível.
+
+  
+
+**Regra de não repetição (herdada de RF12, confirmada pelo owner):** dentro de cada tipo de card, um item já exibido não é sorteado de novo até que todos os demais itens daquele tipo já tenham aparecido pelo menos uma vez. O ciclo é **independente por tipo** (mesma lógica de "por lista" em Verbs, aplicada a "por tipo" aqui) e só avança nas rodadas em que aquele tipo é de fato sorteado para aparecer — um tipo que fica de fora de várias rodadas simplesmente não avança seu próprio ciclo enquanto isso. Nota de escala: o Tipo B tem só 4 itens — o ciclo se esgota a cada 4 vezes que o Tipo B é sorteado, o que pode ficar perceptível/repetitivo mais rápido que os outros tipos (9, 12 e 22 itens).
 
   
 
@@ -180,7 +205,7 @@ Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card
 
 - Não trazemos o seletor de escopo Lista 1/Lista 2/Todos (RF11) para dentro de Prepositions — os 3 tipos de card já cumprem um papel de sub-categorização. [A DEFINIR] se isso deve mudar quando o banco de preposições crescer.
 
-- Não cobrimos preposições de tempo/lugar (in/on/at aplicado a datas e locais, por exemplo) nesta fase — fora do escopo de conteúdo definido na nota original.
+- ~~Não cobrimos preposições de tempo/lugar (in/on/at aplicado a datas e locais, por exemplo) nesta fase~~ — **coberto a partir da v0.2** pelo Tipo D (in/on/at), com 22 frases agrupadas em 9 regras (local, tempo, proximidade, meios de transporte, dias, superfície, elétrico/eletrônico e o caso "coringa"). Continua fora do escopo desta fase qualquer preposição de tempo/lugar além de in/on/at (ex.: "since", "until", "between").
 
 - Não aceitamos crédito parcial em respostas compostas do Tipo A — resposta incompleta é erro total do campo.
 
@@ -194,7 +219,7 @@ Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card
 
 - Fundir os cards 3 e 4 do documento original simplifica a experiência do estudante (uma categoria a menos para entender) e reduz a superfície de UI, ao custo de mover a complexidade para o modelo de dados: a explicação de erro agora é atributo do item, não do tipo de card — qualquer novo item do Tipo C precisa vir com sua regra de explicação associada, ou o sistema não sabe o que exibir.
 
-- Garantir 1 card de cada tipo por rodada (em vez de sorteio livre) reduz variância de experiência (estudante sempre pratica os 3 formatos), mas cria acoplamento entre "número de tipos de card" e "tamanho da rodada" (hoje 3=3 por coincidência). Se um 4º tipo de card for adicionado no futuro, essa regra quebra e precisa ser redesenhada — sinalizado aqui para não virar descoberta tardia em v2.
+- ~~Garantir 1 card de cada tipo por rodada (em vez de sorteio livre) reduz variância de experiência (estudante sempre pratica os 3 formatos), mas cria acoplamento entre "número de tipos de card" e "tamanho da rodada" (hoje 3=3 por coincidência). Se um 4º tipo de card for adicionado no futuro, essa regra quebra e precisa ser redesenhada — sinalizado aqui para não virar descoberta tardia em v2.~~ — **Realizado na v0.2:** o Tipo D foi adicionado e a regra quebrou exatamente como previsto. Resolução adotada: manter a rodada em 3 cards e sortear 3 dos 4 tipos por rodada (aleatório puro, sem repetir tipo dentro da rodada, sem garantia de cobertura entre rodadas — ver Seção 4). O trade-off agora é o oposto do original: variância de experiência é maior (um tipo pode não aparecer por várias rodadas seguidas), mas o tamanho da rodada não precisou escalar junto com o número de tipos.
 
   
 
@@ -218,7 +243,9 @@ Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card
 
 | RF23 | Como estudante, quero responder cards sobre o uso de "to" ou "for" em frases traduzidas do português, e ver uma explicação específica da regra quando erro, para entender o motivo do erro e não só que errei. | MUST |
 
-| RF24 | Como estudante, quero que cada rodada em Prepositions inclua um card de cada um dos 3 tipos, para praticar todos os formatos de forma equilibrada a cada rodada. | MUST |
+| RF24 | Como estudante, quero que cada rodada em Prepositions inclua 3 cards de tipos distintos entre os 4 disponíveis (nunca 2 cards do mesmo tipo na mesma rodada), para praticar múltiplos formatos a cada rodada sem depender de a rodada crescer junto com o número de tipos de card. *(Atualizado na v0.2 — a redação original garantia 1 card de cada um dos então 3 tipos; deixou de ser possível manter essa garantia com 4 tipos e rodada de tamanho 3, ver Seção 4.)* | MUST |
+
+| RF28 | Como estudante, quero responder cards que pedem para completar uma frase em inglês com "in", "on" ou "at" no meio dela, e ver a frase completa com a explicação da regra sempre que virar o card (acertando ou errando), para entender a regra mesmo quando acerto por intuição/sorte. | MUST |
 
 | RF25 | Como estudante, quero que o sorteio dentro de cada tipo de card não repita um item até que eu tenha visto todos os outros itens daquele tipo, para garantir cobertura completa antes de qualquer repetição. | MUST |
 
@@ -228,7 +255,7 @@ Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card
 
   
 
-**Fluxo principal:** Estudante acessa o sistema → cai em Verbs (home) → clica em "Prepositions" no menu lateral → uma rodada de 3 cards é sorteada (1 de cada tipo: A, B, C) → preenche os campos → vira cada card → recebe correção (e explicação, se Tipo C e errado) → clica em "Nova rodada" → repete → opcionalmente clica em "Concluir estudos" para ver o resumo da sessão de Prepositions (independente da sessão de Verbs).
+**Fluxo principal:** Estudante acessa o sistema → cai em Verbs (home) → clica em "Prepositions" no menu lateral → uma rodada de 3 cards é sorteada (3 dos 4 tipos disponíveis — A, B, C, D —, sempre distintos entre si) → preenche os campos → vira cada card → recebe correção (e explicação, se Tipo C e errado, ou sempre se Tipo D) → clica em "Nova rodada" → repete → opcionalmente clica em "Concluir estudos" para ver o resumo da sessão de Prepositions (independente da sessão de Verbs).
 
   
 
@@ -257,6 +284,8 @@ Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card
 - Tipo C (fundido) errado → sistema precisa exibir a explicação correta associada àquele item específico (grupo "to vs for" ou grupo "objeto na frase") — item sem esse campo preenchido no banco não deve quebrar a UI; [A DEFINIR] comportamento de fallback (ex.: não exibir texto de explicação, só o gabarito) se o campo estiver vazio.
 
 - Estudante conclui sessão de Prepositions (Concluir estudos) enquanto tem sessão em andamento em Verbs → apenas a sessão de Prepositions é resumida/resetada; sessão de Verbs não é afetada (decorre diretamente da independência confirmada de sessões).
+
+- Rodada sorteia o Tipo D, mas o item digitado pelo estudante não corresponde a nenhuma das 3 opções esperadas (ex.: digita "of" em vez de in/on/at) → mesma lógica binária certo/errado do resto do sistema; a explicação da regra é exibida do mesmo jeito (Tipo D sempre exibe, ver Seção 4), então o estudante ainda vê por que a resposta certa era outra.
 
 - Z = 0 ao clicar em "Concluir estudos" dentro de Prepositions → mesmo comportamento de Verbs (Fase 2): botão desabilitado até pelo menos 1 campo ter sido corrigido na sessão de Prepositions.
 
@@ -288,7 +317,9 @@ Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card
 
 - DADO um card do Tipo C, QUANDO o estudante erra a resposta, ENTÃO o texto de explicação exibido corresponde exatamente à regra daquele item específico (grupo "to/for" ou grupo "objeto na frase"), não uma mensagem genérica do tipo de card.
 
-- DADO uma rodada sorteada em Prepositions, QUANDO o estudante observa os 3 cards, ENTÃO exatamente 1 card é do Tipo A, 1 do Tipo B e 1 do Tipo C.
+- DADO uma rodada sorteada em Prepositions, QUANDO o estudante observa os 3 cards, ENTÃO eles são de 3 tipos distintos entre os 4 disponíveis (A, B, C, D) — nunca 2 cards do mesmo tipo na mesma rodada. *(Atualizado na v0.2 — não há garantia de que um tipo específico apareça em toda rodada.)*
+
+- DADO um card do Tipo D, QUANDO o estudante vira o card, ENTÃO a frase completa com a preposição correta E o texto de explicação da regra são exibidos, independente de a resposta estar certa ou errada.
 
 - DADO um tipo de card com N itens no banco, QUANDO rodadas sucessivas são sorteadas dentro de Prepositions, ENTÃO nenhum item daquele tipo se repete até que os N itens já tenham sido exibidos ao menos uma vez.
 
@@ -332,7 +363,7 @@ Com a fusão dos tipos 3/4, Prepositions passou a ter exatamente 3 tipos de card
 
 | Fusão dos cards 3/4 originais sob um único rótulo de card pode confundir o estudante sobre qual regra se aplica antes de errar | Produto | Baixa | Médio | O texto de explicação só aparece após o erro (não antes), o que mitiga confusão prévia; copy final do rótulo do card precisa ser genérica o bastante para cobrir as duas regras — [A DEFINIR] |
 
-| Regra "1 card de cada tipo por rodada" está acoplada ao número atual de tipos (3) — adicionar um 4º tipo no futuro quebra essa premissa | Técnico | Baixa (curto prazo) | Médio (médio prazo) | Revisitar a lógica de sorteio antes de adicionar qualquer novo tipo de card a Prepositions |
+| ~~Regra "1 card de cada tipo por rodada" está acoplada ao número atual de tipos (3) — adicionar um 4º tipo no futuro quebra essa premissa~~ — **Materializado em 2026-08-21** com a adição do Tipo D. Resolvido sorteando 3 dos 4 tipos por rodada (aleatório puro, ver Seção 4). Risco residual: sem garantia de cobertura entre rodadas, um tipo pode ficar de fora perceptivelmente por acaso | Técnico | Baixa (validar na prática se a variância incomoda) | Baixo (produto, não técnico) | Se o owner observar na prática que falta de cobertura incomoda, evoluir para um ciclo justo entre tipos (ex.: garantir os 4 tipos a cada 4 rodadas) |
 
 | Conteúdo (preposições, palavras, frases) não foi validado com estudantes reais — pode não refletir os erros mais comuns de fato | Negócio | Alta | Médio | Mesma recomendação herdada dos PRDs anteriores: validar com piloto informal antes de expandir o banco |
 

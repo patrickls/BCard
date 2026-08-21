@@ -15,8 +15,8 @@
       <div class="header-title-container">
         <h1 class="main-title">Prepositions Dashboard</h1>
         <p class="subtitle">
-          Teste sua memória ativa: responda os 3 tipos de card (tradução, uso obrigatório e "to"/"for") e vire cada
-          um para conferir a correção.
+          Teste sua memória ativa: a cada rodada 3 dos 4 tipos de card (tradução, uso obrigatório, "to"/"for" e
+          "in"/"on"/"at") são sorteados — vire cada um para conferir a correção.
         </p>
       </div>
 
@@ -67,21 +67,30 @@
   </div>
 
   <!-- GRID DE CARDS -->
-  <main class="cards-grid" *ngIf="!loading() && !error() && translationCard() && requiredUsageCard() && toForCard()">
+  <main class="cards-grid" *ngIf="!loading() && !error() && roundReady()">
     <app-preposition-translation-card
-      [state]="translationCard()!"
+      *ngIf="translationCard() as card"
+      [state]="card"
       (stateChange)="onTranslationStateChange($event)"
     ></app-preposition-translation-card>
 
     <app-preposition-required-usage-card
-      [state]="requiredUsageCard()!"
+      *ngIf="requiredUsageCard() as card"
+      [state]="card"
       (stateChange)="onRequiredUsageStateChange($event)"
     ></app-preposition-required-usage-card>
 
     <app-preposition-to-for-card
-      [state]="toForCard()!"
+      *ngIf="toForCard() as card"
+      [state]="card"
       (stateChange)="onToForStateChange($event)"
     ></app-preposition-to-for-card>
+
+    <app-preposition-in-on-at-card
+      *ngIf="inOnAtCard() as card"
+      [state]="card"
+      (stateChange)="onInOnAtStateChange($event)"
+    ></app-preposition-in-on-at-card>
   </main>
 
   <!-- FOOTER COM DICAS E TECLAS DE ATALHO -->

@@ -4,6 +4,7 @@ import verbRoutes from "./verb.routes";
 import prepositionTranslationRoutes from "./preposition-translation.routes";
 import prepositionRequiredUsageRoutes from "./preposition-required-usage.routes";
 import prepositionToForRoutes from "./preposition-to-for.routes";
+import prepositionInOnAtRoutes from "./preposition-in-on-at.routes";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use("/verbs", verbRoutes);
 router.use("/prepositions/translations", prepositionTranslationRoutes);
 router.use("/prepositions/required-usage", prepositionRequiredUsageRoutes);
 router.use("/prepositions/to-for", prepositionToForRoutes);
+router.use("/prepositions/in-on-at", prepositionInOnAtRoutes);
 
 export default router;

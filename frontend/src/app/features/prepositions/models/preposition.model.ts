@@ -24,6 +24,16 @@ export interface PrepositionToFor {
   updatedAt?: string;
 }
 
+export interface PrepositionInOnAt {
+  id: string;
+  sentence: string;
+  answer: string;
+  groupNumber: number;
+  explanation: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface CardResult {
   correct: boolean;
 }
@@ -44,6 +54,13 @@ export interface RequiredUsageCardState {
 
 export interface ToForCardState {
   item: PrepositionToFor;
+  answer: string;
+  isFlipped: boolean;
+  result?: CardResult;
+}
+
+export interface InOnAtCardState {
+  item: PrepositionInOnAt;
   answer: string;
   isFlipped: boolean;
   result?: CardResult;
