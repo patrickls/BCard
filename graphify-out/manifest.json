@@ -1,33 +1,33 @@
 {
   "backend/package.json": {
-    "mtime": 1786445666.1772487,
-    "ast_hash": "2072c563961248d62fde8ae614dc5f3d",
-    "semantic_hash": "2072c563961248d62fde8ae614dc5f3d"
+    "mtime": 1786829989.3858743,
+    "ast_hash": "45918a7f06240c6907c08e47ecfec450",
+    "semantic_hash": "45918a7f06240c6907c08e47ecfec450"
   },
   "backend/src/app.ts": {
-    "mtime": 1786445767.1992965,
-    "ast_hash": "6aa81506a282e767a6af09b325cfd1c7",
-    "semantic_hash": "6aa81506a282e767a6af09b325cfd1c7"
+    "mtime": 1786829994.559584,
+    "ast_hash": "27591a5af8bbe7d5623a562ef6b86f0e",
+    "semantic_hash": "27591a5af8bbe7d5623a562ef6b86f0e"
   },
   "backend/src/config/database.ts": {
-    "mtime": 1786445697.4281087,
-    "ast_hash": "cce1857db1d6b5b19d6658818ef8a197",
-    "semantic_hash": "cce1857db1d6b5b19d6658818ef8a197"
+    "mtime": 1786538710.9239907,
+    "ast_hash": "073460ce9a1370193d55129494f885ea",
+    "semantic_hash": "073460ce9a1370193d55129494f885ea"
   },
   "backend/src/controllers/user.controller.ts": {
-    "mtime": 1786445745.402715,
-    "ast_hash": "15e1b20676711b3f34cb2e7750fd1786",
-    "semantic_hash": "15e1b20676711b3f34cb2e7750fd1786"
+    "mtime": 1786829952.3290565,
+    "ast_hash": "6df87ddde231d95c70e4a078f81baeaa",
+    "semantic_hash": "6df87ddde231d95c70e4a078f81baeaa"
   },
   "backend/src/controllers/verb.controller.ts": {
-    "mtime": 1786448476.0439267,
-    "ast_hash": "eada9e7904686e59d88bdd7f391dda4e",
-    "semantic_hash": "eada9e7904686e59d88bdd7f391dda4e"
+    "mtime": 1786476107.0944505,
+    "ast_hash": "6234d7c3652a15055d3168fd9a7d1bab",
+    "semantic_hash": "6234d7c3652a15055d3168fd9a7d1bab"
   },
   "backend/src/middlewares/auth.middleware.ts": {
-    "mtime": 1786445721.740558,
-    "ast_hash": "0511c5c6680f126eb6f3d8081ce52b1f",
-    "semantic_hash": "0511c5c6680f126eb6f3d8081ce52b1f"
+    "mtime": 1786455929.4558697,
+    "ast_hash": "7c569fc535a9ffa99f0b330910365944",
+    "semantic_hash": "7c569fc535a9ffa99f0b330910365944"
   },
   "backend/src/middlewares/error-handler.middleware.ts": {
     "mtime": 1786445713.6547594,
@@ -45,9 +45,9 @@
     "semantic_hash": "7f017cb1460cf320049e5ebd9cd150b0"
   },
   "backend/src/models/verb.entity.ts": {
-    "mtime": 1786448455.709594,
-    "ast_hash": "4ea711698bba01dbb1d0c7ba89d20825",
-    "semantic_hash": "4ea711698bba01dbb1d0c7ba89d20825"
+    "mtime": 1786473200.0529003,
+    "ast_hash": "deb69e381a5adb2209b26f37866602f9",
+    "semantic_hash": "deb69e381a5adb2209b26f37866602f9"
   },
   "backend/src/routes/index.ts": {
     "mtime": 1786448485.7433965,
@@ -70,14 +70,14 @@
     "semantic_hash": "83735c344ea5a206588fcf740cd70ee9"
   },
   "backend/src/services/user.service.ts": {
-    "mtime": 1786445737.1484902,
-    "ast_hash": "9c1118b1cecd089ed14e2cad5f8c3008",
-    "semantic_hash": "9c1118b1cecd089ed14e2cad5f8c3008"
+    "mtime": 1786829921.6145058,
+    "ast_hash": "7d72d70fc90892e0e0c113c9ef41e401",
+    "semantic_hash": "7d72d70fc90892e0e0c113c9ef41e401"
   },
   "backend/src/services/verb.service.ts": {
-    "mtime": 1786448469.9611142,
-    "ast_hash": "f0b37ea6b6b47194176d7c61b3985100",
-    "semantic_hash": "f0b37ea6b6b47194176d7c61b3985100"
+    "mtime": 1786990578.19074,
+    "ast_hash": "c691370c8c24fa113ef16c0f512f9120",
+    "semantic_hash": "c691370c8c24fa113ef16c0f512f9120"
   },
   "backend/tsconfig.json": {
     "mtime": 1786445674.7347925,
@@ -100,9 +100,9 @@
     "semantic_hash": "cb7ed9a56930402d9059ea5a9773d60e"
   },
   "frontend/angular.json": {
-    "mtime": 1786448592.460231,
-    "ast_hash": "5dfb8b66020252e0c2213e8e6a4184e8",
-    "semantic_hash": "5dfb8b66020252e0c2213e8e6a4184e8"
+    "mtime": 1786538901.8872142,
+    "ast_hash": "fdfe4bd722dd1cb494dc08b737f5ad07",
+    "semantic_hash": "fdfe4bd722dd1cb494dc08b737f5ad07"
   },
   "frontend/package.json": {
     "mtime": 1786445949.8452506,
@@ -145,24 +145,24 @@
     "semantic_hash": "96c00059d1898c646c5065c1cb70fb61"
   },
   "frontend/src/app/core/services/verb.service.ts": {
-    "mtime": 1786448514.7673643,
-    "ast_hash": "8af31a0f55d0b4cd73e77a7ee1ad073e",
-    "semantic_hash": "8af31a0f55d0b4cd73e77a7ee1ad073e"
+    "mtime": 1786990513.253632,
+    "ast_hash": "787c0287a4391927673e5ded6070197a",
+    "semantic_hash": "787c0287a4391927673e5ded6070197a"
   },
   "frontend/src/app/features/flashcards/components/flashcard-item/flashcard-item.component.ts": {
-    "mtime": 1786448520.7651825,
-    "ast_hash": "2d78e7ab00fdfaf2e1fc8544670649d9",
-    "semantic_hash": "2d78e7ab00fdfaf2e1fc8544670649d9"
+    "mtime": 1786993406.8992436,
+    "ast_hash": "dfc7d0f149b56db161e8fc7124060e37",
+    "semantic_hash": "dfc7d0f149b56db161e8fc7124060e37"
   },
   "frontend/src/app/features/flashcards/flashcards.component.ts": {
-    "mtime": 1786449606.6172512,
-    "ast_hash": "7de28d1406739cca46040ff767c8ceb5",
-    "semantic_hash": "7de28d1406739cca46040ff767c8ceb5"
+    "mtime": 1786993358.3010867,
+    "ast_hash": "dc63cb4dd6650a9d74acf5c00baaec00",
+    "semantic_hash": "dc63cb4dd6650a9d74acf5c00baaec00"
   },
   "frontend/src/app/features/flashcards/models/verb.model.ts": {
-    "mtime": 1786448508.6674805,
-    "ast_hash": "1fe361e1b40a5cecf6e6a9d514973c38",
-    "semantic_hash": "1fe361e1b40a5cecf6e6a9d514973c38"
+    "mtime": 1786990589.3588297,
+    "ast_hash": "296e53b5e3d0774ab8cc372786024d83",
+    "semantic_hash": "296e53b5e3d0774ab8cc372786024d83"
   },
   "frontend/src/app/features/users/users.component.ts": {
     "mtime": 1786446002.1461408,
@@ -180,9 +180,9 @@
     "semantic_hash": "da5f17c6b7dae3c8983eb1ec04e67c8c"
   },
   "frontend/src/environments/environment.ts": {
-    "mtime": 1786445949.8757358,
-    "ast_hash": "31c2d5daba455ae8c33c650cd52530ed",
-    "semantic_hash": "31c2d5daba455ae8c33c650cd52530ed"
+    "mtime": 1786455069.103617,
+    "ast_hash": "170089364ef4ebf6062ba1aafab40f2d",
+    "semantic_hash": "170089364ef4ebf6062ba1aafab40f2d"
   },
   "frontend/src/main.ts": {
     "mtime": 1786445864.5091345,
@@ -205,14 +205,14 @@
     "semantic_hash": "9e61a5663cdfef3c963a3595ac1a7813"
   },
   "CLAUDE.md": {
-    "mtime": 1786446204.1774817,
-    "ast_hash": "18995de22d1fcceae5e0d6286b4f1c85",
-    "semantic_hash": "18995de22d1fcceae5e0d6286b4f1c85"
+    "mtime": 1786829893.75511,
+    "ast_hash": "f360f2a0f6dc98473ec20c9255d4ff20",
+    "semantic_hash": "f360f2a0f6dc98473ec20c9255d4ff20"
   },
   "Documentacao/PRD \u2014 Painel de Flashcards de Verbos Irregulares.md": {
-    "mtime": 1786445211.2894602,
-    "ast_hash": "3ed579f4bb8bf31c33cf6ffe5db01cd8",
-    "semantic_hash": "3ed579f4bb8bf31c33cf6ffe5db01cd8"
+    "mtime": 1786475922.3147576,
+    "ast_hash": "55b87c557eb9bcd9d7edbff7d019c3d4",
+    "semantic_hash": "55b87c557eb9bcd9d7edbff7d019c3d4"
   },
   "README.md": {
     "mtime": 1786445828.8218102,
@@ -230,14 +230,14 @@
     "semantic_hash": "eb2ce819db0e019d9b8afee11e3b5828"
   },
   "frontend/src/app/features/flashcards/components/flashcard-item/flashcard-item.component.html": {
-    "mtime": 1786448527.157267,
-    "ast_hash": "9d59012b26794abcc8734b97b7201c1b",
-    "semantic_hash": "9d59012b26794abcc8734b97b7201c1b"
+    "mtime": 1786993353.6023805,
+    "ast_hash": "5a53bcbd6615f12d5b895e867dddb587",
+    "semantic_hash": "5a53bcbd6615f12d5b895e867dddb587"
   },
   "frontend/src/app/features/flashcards/flashcards.component.html": {
-    "mtime": 1786451454.8885515,
-    "ast_hash": "afcd389aaf26b32a0ce00a8b86db499f",
-    "semantic_hash": "afcd389aaf26b32a0ce00a8b86db499f"
+    "mtime": 1786833058.8718517,
+    "ast_hash": "4639ecec7958fc8bdc57c57fc6bc2f68",
+    "semantic_hash": "4639ecec7958fc8bdc57c57fc6bc2f68"
   },
   "frontend/src/app/features/users/users.component.html": {
     "mtime": 1786446008.621362,
@@ -245,8 +245,83 @@
     "semantic_hash": "46e7597033c4a027ea383f73bef30311"
   },
   "frontend/src/index.html": {
-    "mtime": 1786445864.5091345,
-    "ast_hash": "ff81e1e33011abb66bf0061d4a2f8fa4",
-    "semantic_hash": "ff81e1e33011abb66bf0061d4a2f8fa4"
+    "mtime": 1786829898.1923535,
+    "ast_hash": "236bb18cc432b5d26ee80ddc594bda56",
+    "semantic_hash": "236bb18cc432b5d26ee80ddc594bda56"
+  },
+  "backend/api/index.ts": {
+    "mtime": 1786538732.0864244,
+    "ast_hash": "a9fe7a235eebd21cab7db4d7d0c0be0c",
+    "semantic_hash": "a9fe7a235eebd21cab7db4d7d0c0be0c"
+  },
+  "backend/src/dtos/create-user.dto.ts": {
+    "mtime": 1786829934.928406,
+    "ast_hash": "079566ca3485cfb84e163f26664281e2",
+    "semantic_hash": "079566ca3485cfb84e163f26664281e2"
+  },
+  "backend/src/dtos/update-user.dto.ts": {
+    "mtime": 1786829938.2704637,
+    "ast_hash": "b0990ab72e4532aff2499abe16469778",
+    "semantic_hash": "b0990ab72e4532aff2499abe16469778"
+  },
+  "backend/src/migrations/1723380100000-CreateUsersTable.ts": {
+    "mtime": 1786454805.596478,
+    "ast_hash": "593db148d463b05650b5156393f61719",
+    "semantic_hash": "593db148d463b05650b5156393f61719"
+  },
+  "backend/src/migrations/1723390000000-AddListColumnAndReseedVerbs.ts": {
+    "mtime": 1786475182.2099695,
+    "ast_hash": "ad591815c32d73f50a9ca593342d7e63",
+    "semantic_hash": "ad591815c32d73f50a9ca593342d7e63"
+  },
+  "backend/src/migrations/1723390100000-FixVerbsListLabels.ts": {
+    "mtime": 1786475201.147527,
+    "ast_hash": "14ed00bd1b78365dbc5303f20baae780",
+    "semantic_hash": "14ed00bd1b78365dbc5303f20baae780"
+  },
+  "backend/src/migrations/1723390200000-SetVerbsListByInfinitive.ts": {
+    "mtime": 1786475331.7559345,
+    "ast_hash": "056ba5750feb15d226a52a20fd96eb17",
+    "semantic_hash": "056ba5750feb15d226a52a20fd96eb17"
+  },
+  "backend/vercel.json": {
+    "mtime": 1786538737.8133543,
+    "ast_hash": "824bf916e2a9f7d46d26901cb8162335",
+    "semantic_hash": "824bf916e2a9f7d46d26901cb8162335"
+  },
+  "frontend/src/environments/environment.prod.ts": {
+    "mtime": 1786540639.8120532,
+    "ast_hash": "9484fa6302b3d2827210c6a813542154",
+    "semantic_hash": "9484fa6302b3d2827210c6a813542154"
+  },
+  "frontend/vercel.json": {
+    "mtime": 1786478702.9214418,
+    "ast_hash": "3ce034f37a6661efc8073a99b87d2c87",
+    "semantic_hash": "3ce034f37a6661efc8073a99b87d2c87"
+  },
+  "frontend/public/images/session-levels/medalha-bronze.png": {
+    "mtime": 1786832931.0684059,
+    "ast_hash": "68d36f9565dd06a741dec8455220e9cf",
+    "semantic_hash": "68d36f9565dd06a741dec8455220e9cf"
+  },
+  "frontend/public/images/session-levels/medalha-ouro.png": {
+    "mtime": 1786832933.1436205,
+    "ast_hash": "277bab0f0d526dd9b1926eee15867541",
+    "semantic_hash": "277bab0f0d526dd9b1926eee15867541"
+  },
+  "frontend/public/images/session-levels/medalha-prata.png": {
+    "mtime": 1786832936.1931584,
+    "ast_hash": "6a49a2b15c3be90dba9d133511e135d2",
+    "semantic_hash": "6a49a2b15c3be90dba9d133511e135d2"
+  },
+  "frontend/public/images/session-levels/trofeu.png": {
+    "mtime": 1786832928.929787,
+    "ast_hash": "bffd46c7092174a1e7623b6b3e0a602c",
+    "semantic_hash": "bffd46c7092174a1e7623b6b3e0a602c"
+  },
+  "frontend/public/pills.jpeg": {
+    "mtime": 1786698628.073609,
+    "ast_hash": "ee89c5b49b24f51206b6c9bf9dba0a37",
+    "semantic_hash": "ee89c5b49b24f51206b6c9bf9dba0a37"
   }
 }
